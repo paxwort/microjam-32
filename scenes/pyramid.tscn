@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://rwihfl1dtkdx"]
+
+[ext_resource type="PackedScene" uid="uid://cfnw8s4hun357" path="res://art_assets/pyramid.glb" id="1_85ei2"]
+[ext_resource type="Script" path="res://scripts/play_named_animation.gd" id="2_bo07r"]
+
+[node name="pyramid" type="Node3D"]
+
+[node name="pyramid" parent="." instance=ExtResource("1_85ei2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.288237, 0, 0.68682)
+
+[node name="play_animation_open" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_bo07r")
+player = NodePath("../pyramid/AnimationPlayer")
+animation_name = "Pyramid_Open"
+
+[node name="play_animation_close" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_bo07r")
+player = NodePath("../pyramid/AnimationPlayer")
+animation_name = "Pyramid_Open"
+reverse = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.894357, 0.447353, 0, -0.447353, 0.894357, 0, 14.8256, 27.4404)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
+
+[node name="Test_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 352.0
+offset_bottom = 184.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Test_UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 4
+
+[node name="OpenPyramid" type="Button" parent="Test_UI/VBoxContainer"]
+layout_mode = 2
+text = "Open"
+
+[node name="ClosePyramid" type="Button" parent="Test_UI/VBoxContainer"]
+layout_mode = 2
+text = "Close
+"
+
+[connection signal="pressed" from="Test_UI/VBoxContainer/OpenPyramid" to="play_animation_open" method="play"]
+[connection signal="pressed" from="Test_UI/VBoxContainer/ClosePyramid" to="play_animation_close" method="play"]
