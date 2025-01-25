@@ -1,1 +1,0 @@
-extends KinematicBody3D
