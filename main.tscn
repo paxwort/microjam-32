@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=18 format=3 uid="uid://cjqln2kqwkwc4"]
 
 [ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
@@ -10,6 +10,9 @@
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementCursor.gd" id="5_ffcvi"]
 [ext_resource type="PackedScene" uid="uid://dpldgh6x8hyfh" path="res://prefabs/towers/test_placing_tower.tscn" id="5_rtwpd"]
 [ext_resource type="PackedScene" uid="uid://cfnw8s4hun357" path="res://art_assets/pyramid.glb" id="6_gkte1"]
+[ext_resource type="PackedScene" uid="uid://c28v1lcjn3ks4" path="res://prefabs/spawner.tscn" id="8_ips6i"]
+[ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemy_1.tscn" id="9_jyc2j"]
+[ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemy_2.tscn" id="10_bt8ur"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6b1ja"]
 
@@ -93,6 +96,13 @@ reverse = true
 [node name="Map" parent="." instance=ExtResource("2_2bc4d")]
 unique_name_in_owner = true
 
+[node name="Spawner" parent="Map/Maze/MazePath" index="0" instance=ExtResource("8_ips6i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+enemyTypes = {
+"enemy_1": ExtResource("9_jyc2j"),
+"enemy_2": ExtResource("10_bt8ur")
+}
+
 [node name="MazeMesher" parent="Map/Maze" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.101383, -0.0325584, 0.0300293)
 
@@ -124,6 +134,10 @@ text = "Give me a new path
 layout_mode = 2
 text = "Place a tower"
 
+[node name="Begin Round button" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Begin Round"
+
 [node name="Tower Placing Indicator" type="RichTextLabel" parent="Control/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -146,6 +160,7 @@ mesh = SubResource("BoxMesh_ad2qx")
 [connection signal="enabling" from="GameState/STATE_Reset" to="GameState/STATE_Reset/play_pyramid_close" method="play"]
 [connection signal="pressed" from="Control/VBoxContainer/New Path Button" to="GameState/STATE_Game/GoToReset" method="go_to_state"]
 [connection signal="pressed" from="Control/VBoxContainer/Place Tower button" to="Tower Placement Cursor" method="start_placing"]
+[connection signal="pressed" from="Control/VBoxContainer/Begin Round button" to="Map/Maze/MazePath/Spawner" method="_on_begin_round_button_pressed"]
 [connection signal="placing_started" from="Tower Placement Cursor" to="Control/VBoxContainer/Tower Placing Indicator" method="show"]
 [connection signal="placing_started" from="Tower Placement Cursor" to="Tower Placement Cursor/Indicator" method="show"]
 [connection signal="tower_placed" from="Tower Placement Cursor" to="Control/VBoxContainer/Tower Placing Indicator" method="hide"]

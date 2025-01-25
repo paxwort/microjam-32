@@ -47,12 +47,6 @@ func _process(delta: float) -> void:
 		RemainingWaitTime = SpawnWaitTime
 	
 
-func _input(event):
-	var just_pressed = event.is_pressed() and not event.is_echo()
-	if Input.is_key_pressed(KEY_SPACE) and just_pressed:
-		LevelCounter += 1
-		_load_level_wave()
-
 func Spawn(spawn_id: String) -> void:
 	var toSpawn = enemyTypes[spawn_id]
 	if(toSpawn == null):
@@ -72,5 +66,13 @@ func _load_file_as_string(file):
 	
 func _load_level_wave():
 	var level_name = "wave_%s" % LevelCounter
-	SpawnQueue = WaveData[level_name]
-	print(level_name)
+	if(WaveData.has(level_name) && WaveData[level_name].size() != 0):
+		SpawnQueue = WaveData[level_name]
+	else:
+		print("No level data available for %s" % level_name)
+
+
+func _on_begin_round_button_pressed() -> void:
+	LevelCounter+=1
+	print("Loading level %s" % LevelCounter)
+	_load_level_wave()
