@@ -67,13 +67,16 @@ script = ExtResource("5_ffcvi")
 tower_prefab = ExtResource("5_rtwpd")
 
 [node name="Indicator" type="MeshInstance3D" parent="Tower Placement Cursor"]
+visible = false
 mesh = SubResource("BoxMesh_ad2qx")
 
 [connection signal="pressed" from="Control/VBoxContainer/New Path Button" to="pyramid/play_animation_open" method="play"]
 [connection signal="pressed" from="Control/VBoxContainer/New Path Button" to="Map/Maze" method="create_new_maze"]
 [connection signal="pressed" from="Control/VBoxContainer/Place Tower button" to="Tower Placement Cursor" method="start_placing"]
 [connection signal="placing_started" from="Tower Placement Cursor" to="Control/VBoxContainer/Tower Placing Indicator" method="show"]
+[connection signal="placing_started" from="Tower Placement Cursor" to="Tower Placement Cursor/Indicator" method="show"]
 [connection signal="tower_placed" from="Tower Placement Cursor" to="Control/VBoxContainer/Tower Placing Indicator" method="hide"]
+[connection signal="tower_placed" from="Tower Placement Cursor" to="Tower Placement Cursor/Indicator" method="hide"]
 
 [editable path="pyramid"]
 [editable path="Map"]

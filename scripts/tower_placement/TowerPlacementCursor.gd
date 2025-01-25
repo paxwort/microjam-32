@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 			var tower = tower_prefab.instantiate()
 			%Map.add_child(tower)
 			tower.global_position = global_position
+			%Map.find_child("Maze").created.connect(tower.queue_free)
 			stop_placing()
 
 func raycast_to_tower_placement_plane() -> Dictionary:
