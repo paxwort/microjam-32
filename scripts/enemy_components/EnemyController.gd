@@ -1,5 +1,5 @@
 class_name EnemyController
-extends Node
+extends CharacterBody3D
 
 @export var Movement: MovementComponent
 

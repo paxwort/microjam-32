@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6nunh56tvqt7"]
+[gd_scene load_steps=6 format=3 uid="uid://c6nunh56tvqt7"]
 
 [ext_resource type="PackedScene" uid="uid://cqafd4trxsmcr" path="res://assets/KenneyNL_TowerDefence/enemy-ufo-a.glb" id="1_5vnld"]
 [ext_resource type="Script" path="res://scripts/enemy_components/EnemyController.gd" id="1_sx0o3"]
 [ext_resource type="Script" path="res://scripts/enemy_components/MovementComponent.gd" id="3_lkds5"]
+[ext_resource type="Script" path="res://scripts/enemy_components/TrackableComponent.gd" id="4_gi65p"]
 
-[node name="Enemy1" type="Node3D" node_paths=PackedStringArray("Movement")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_wupps"]
+
+[node name="Enemy1" type="CharacterBody3D" node_paths=PackedStringArray("Movement")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 script = ExtResource("1_sx0o3")
 Movement = NodePath("MovementNode")
@@ -14,3 +17,9 @@ Movement = NodePath("MovementNode")
 [node name="MovementNode" type="Node3D" parent="."]
 script = ExtResource("3_lkds5")
 speed = 2.0
+
+[node name="Trackable" type="Node3D" parent="."]
+script = ExtResource("4_gi65p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_wupps")
