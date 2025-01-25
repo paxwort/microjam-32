@@ -8,6 +8,13 @@ signal created
 func _ready():
 	create_new_maze()
 
+func world_to_maze_coordinate(world_coordinate : Vector3) -> Vector2i:
+	var local_coordinate = world_coordinate - position
+	return Vector2i(local_coordinate.x, local_coordinate.z)
+
+func maze_to_world_coordinate(maze_coordinate : Vector2i) -> Vector3:
+	return position + Vector3(maze_coordinate.x, 1, maze_coordinate.y)
+
 func create_new_maze():
 	var max_iterations = 20
 	var path : Array[Vector2i]= [] 
