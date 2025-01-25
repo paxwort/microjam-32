@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6nunh56tvqt7"]
+
+[ext_resource type="PackedScene" uid="uid://cqafd4trxsmcr" path="res://assets/KenneyNL_TowerDefence/enemy-ufo-a.glb" id="1_5vnld"]
+[ext_resource type="Script" path="res://scripts/enemy_components/EnemyController.gd" id="1_sx0o3"]
+[ext_resource type="Script" path="res://scripts/enemy_components/MovementComponent.gd" id="3_lkds5"]
+
+[node name="Enemy1" type="Node3D" node_paths=PackedStringArray("Movement")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+script = ExtResource("1_sx0o3")
+Movement = NodePath("MovementNode")
+
+[node name="enemy-ufo-a2" parent="." instance=ExtResource("1_5vnld")]
+
+[node name="MovementNode" type="Node3D" parent="."]
+script = ExtResource("3_lkds5")
+speed = 2.0
