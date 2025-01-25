@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://caue7rc1m70vr"]
+
+[ext_resource type="PackedScene" uid="uid://5klxnakhgyxi" path="res://art_assets/towers/tower_crossbow.glb" id="1_fe5hx"]
+[ext_resource type="Script" path="res://scripts/tower/EnemyTracker.gd" id="1_voke0"]
+[ext_resource type="Script" path="res://scripts/tower/LookAtTarget.gd" id="3_21kcj"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ng7t3"]
+radius = 2.53939
+
+[node name="CrossbowTower" type="Node3D"]
+
+[node name="EnemyTracker" type="Area3D" parent="."]
+script = ExtResource("1_voke0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyTracker"]
+shape = SubResource("CylinderShape3D_ng7t3")
+
+[node name="tower_crossbow" parent="." instance=ExtResource("1_fe5hx")]
+
+[node name="Skeleton3D" parent="tower_crossbow/Crossbow_Armature" index="0" node_paths=PackedStringArray("tracker")]
+script = ExtResource("3_21kcj")
+tracker = NodePath("../../../EnemyTracker")
+
+[editable path="tower_crossbow"]

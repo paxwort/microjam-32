@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://out2isyt6elw"]
+[gd_scene load_steps=7 format=3 uid="uid://out2isyt6elw"]
 
 [ext_resource type="MeshLibrary" uid="uid://c3d5okgea5o32" path="res://assets/KenneyNL_TowerDefence/tiles.tres" id="1_jjsu2"]
 [ext_resource type="PackedScene" uid="uid://c28v1lcjn3ks4" path="res://prefabs/spawner.tscn" id="2_5h3f7"]
 [ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemy_1.tscn" id="3_7aebo"]
 [ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemy_2.tscn" id="4_a5sgv"]
+[ext_resource type="PackedScene" uid="uid://caue7rc1m70vr" path="res://prefabs/towers/crossbow_tower.tscn" id="5_e6c75"]
 
 [sub_resource type="Curve3D" id="Curve3D_bd0po"]
 _data = {
@@ -37,3 +38,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, 
 projection = 1
 fov = 93.4555
 size = 7.42542
+
+[node name="CrossbowTower" parent="." instance=ExtResource("5_e6c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25612, 0.334677, -0.1613)
+
+[editable path="CrossbowTower"]
+[editable path="CrossbowTower/tower_crossbow"]
