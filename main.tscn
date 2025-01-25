@@ -20,9 +20,28 @@ sky = SubResource("Sky_482bn")
 [node name="Map" parent="." instance=ExtResource("2_2bc4d")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.23872, 14.9408)
+transform = Transform3D(-1, -3.22193e-15, -8.74228e-08, -4.51816e-08, 0.856096, 0.516817, 7.48423e-08, 0.516817, -0.856096, 0, 12.3499, -16.0102)
 script = ExtResource("3_7ompj")
 default_velocity = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0i1up")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="New Path Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Give me a new path
+"
+
+[connection signal="pressed" from="Control/New Path Button" to="pyramid/play_animation_open" method="play"]
+[connection signal="pressed" from="Control/New Path Button" to="Map/Maze" method="create_new_maze"]
+
+[editable path="pyramid"]
+[editable path="Map"]

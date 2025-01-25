@@ -6,8 +6,12 @@ var size_y : int = 20
 signal created
 
 func _ready():
+	create_new_maze()
+
+
+func create_new_maze():
 	flood_empty()
-	var start = Vector2i(0, size_y / 2)
+	var start = Vector2i(size_x / 2, 0)
 	generate_maze(start)
 	var path : Array[Vector2i]= []
 	path = find_nice_path(start)
@@ -16,7 +20,6 @@ func _ready():
 	cut_path(path)
 	set_game_path(path)
 	created.emit()
-	
 
 func get_cell(x, y) -> int:
 	if x >= 0 and y >= 0 and x < size_x and y < size_y:
