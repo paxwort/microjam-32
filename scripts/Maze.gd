@@ -8,13 +8,17 @@ signal created
 func _ready():
 	create_new_maze()
 
-
 func create_new_maze():
-	flood_empty()
-	var start = Vector2i(size_x / 2, 0)
-	generate_maze(start)
-	var path : Array[Vector2i]= []
-	path = find_nice_path(start)
+	var max_iterations = 20
+	var path : Array[Vector2i]= [] 
+	while(max_iterations > 0):	
+		flood_empty()
+		var start = Vector2i(size_x / 2, 0)
+		generate_maze(start)
+		var new_path = find_nice_path(start)
+		if(new_path.size() > path.size()):
+			path = new_path
+		max_iterations -= 1
 	$MazePath.curve_changed.connect(print.bind("change"))
 	flood_empty()
 	cut_path(path)
