@@ -18,7 +18,6 @@ func _physics_process(delta: float) -> void:
 		return
 	var raycast : Dictionary = raycast_to_tower_placement_plane()
 	if(raycast.keys().size() > 0):
-		print("Hit!")
 		if raycast.collider is TowerPlacementPlane:
 			var drop_position = raycast.collider.get_drop_position(raycast.position)
 			global_position = drop_position
