@@ -26,7 +26,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.25, 0.5)
 curve = SubResource("Curve3D_bd0po")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="GridMap/Path3D"]
-transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -2.4832, 0, -1)
+transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -2.48319, 0, -1)
 progress = 5.9315
 script = ExtResource("2_7rg2u")
 

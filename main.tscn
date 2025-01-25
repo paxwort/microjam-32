@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=7 format=3 uid="uid://cjqln2kqwkwc4"]
+
+[ext_resource type="PackedScene" uid="uid://rwihfl1dtkdx" path="res://scenes/pyramid.tscn" id="1_kjwm7"]
+[ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
+[ext_resource type="Script" path="res://addons/debug_camera/scripts/DebugCamera3D.gd" id="3_7ompj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6b1ja"]
+
+[sub_resource type="Sky" id="Sky_482bn"]
+sky_material = SubResource("ProceduralSkyMaterial_6b1ja")
+
+[sub_resource type="Environment" id="Environment_0i1up"]
+background_mode = 2
+sky = SubResource("Sky_482bn")
 
 [node name="Main" type="Node3D"]
+
+[node name="pyramid" parent="." instance=ExtResource("1_kjwm7")]
+
+[node name="Map" parent="." instance=ExtResource("2_2bc4d")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.23872, 14.9408)
+script = ExtResource("3_7ompj")
+default_velocity = 10.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0i1up")
