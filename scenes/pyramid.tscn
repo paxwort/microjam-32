@@ -1,22 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://rwihfl1dtkdx"]
+[gd_scene load_steps=2 format=3 uid="uid://cht5gqlgvhwmc"]
 
 [ext_resource type="PackedScene" uid="uid://cfnw8s4hun357" path="res://art_assets/pyramid.glb" id="1_85ei2"]
-[ext_resource type="Script" path="res://scripts/play_named_animation.gd" id="2_bo07r"]
 
 [node name="pyramid" type="Node3D"]
 
 [node name="pyramid" parent="." instance=ExtResource("1_85ei2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.288237, 0, 0.68682)
-
-[node name="play_animation_open" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("2_bo07r")
-player = NodePath("../pyramid/AnimationPlayer")
-animation_name = "Pyramid_Open"
-
-[node name="play_animation_close" type="Node" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("2_bo07r")
-player = NodePath("../pyramid/AnimationPlayer")
-animation_name = "Pyramid_Open"
-reverse = true
-
-[connection signal="ready" from="." to="play_animation_open" method="play"]

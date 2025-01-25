@@ -5,8 +5,6 @@ var size_x : int = 20
 var size_y : int = 20
 signal created
 
-func _ready():
-	create_new_maze()
 
 func world_to_maze_coordinate(world_coordinate : Vector3) -> Vector2i:
 	var local_coordinate = world_coordinate - position
@@ -26,7 +24,6 @@ func create_new_maze():
 		if(new_path.size() > path.size()):
 			path = new_path
 		max_iterations -= 1
-	$MazePath.curve_changed.connect(print.bind("change"))
 	flood_empty()
 	cut_path(path)
 	set_game_path(path)

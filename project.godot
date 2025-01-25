@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="microjam-32"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/pl-state-machine/plugin.cfg")
+
 [input]
 
 place_tower={

@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=15 format=3 uid="uid://cjqln2kqwkwc4"]
 
-[ext_resource type="PackedScene" uid="uid://rwihfl1dtkdx" path="res://scenes/pyramid.tscn" id="1_kjwm7"]
+[ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
+[ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLState.gd" id="2_jjydy"]
 [ext_resource type="Script" path="res://addons/debug_camera/scripts/DebugCamera3D.gd" id="3_7ompj"]
+[ext_resource type="Script" path="res://scripts/state/SimpleTransition.gd" id="3_cdlvk"]
+[ext_resource type="Script" path="res://scripts/play_named_animation.gd" id="3_utl4f"]
+[ext_resource type="Script" path="res://scripts/state/TransitionAfter.gd" id="4_00bpe"]
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementCursor.gd" id="5_ffcvi"]
 [ext_resource type="PackedScene" uid="uid://dpldgh6x8hyfh" path="res://prefabs/test_placing_tower.tscn" id="5_rtwpd"]
+[ext_resource type="PackedScene" uid="uid://cfnw8s4hun357" path="res://art_assets/pyramid.glb" id="6_gkte1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6b1ja"]
 
@@ -19,7 +24,71 @@ sky = SubResource("Sky_482bn")
 
 [node name="Main" type="Node3D"]
 
-[node name="pyramid" parent="." instance=ExtResource("1_kjwm7")]
+[node name="GameState" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_c7j07")
+active_state_key = "STATE_Menu"
+
+[node name="STATE_Menu" type="Node" parent="GameState"]
+script = ExtResource("2_jjydy")
+
+[node name="GoToBegin" type="Node" parent="GameState/STATE_Menu"]
+script = ExtResource("3_cdlvk")
+target_state = "STATE_Begin"
+wait_for_frame = true
+
+[node name="STATE_Begin" type="Node" parent="GameState"]
+process_mode = 4
+script = ExtResource("2_jjydy")
+
+[node name="GoToGameAfter1" type="Node" parent="GameState/STATE_Begin"]
+script = ExtResource("4_00bpe")
+time = 1.0
+target_state = "STATE_Game"
+
+[node name="play_pyramid_open" type="Node" parent="GameState/STATE_Begin" node_paths=PackedStringArray("player")]
+script = ExtResource("3_utl4f")
+player = NodePath("../../../pyramid/AnimationPlayer")
+animation_name = "Pyramid_Open"
+
+[node name="STATE_Game" type="Node" parent="GameState"]
+process_mode = 4
+script = ExtResource("2_jjydy")
+
+[node name="GoToReset" type="Node" parent="GameState/STATE_Game"]
+script = ExtResource("3_cdlvk")
+target_state = "STATE_Reset"
+
+[node name="GoToEnd" type="Node" parent="GameState/STATE_Game"]
+script = ExtResource("3_cdlvk")
+target_state = "STATE_End"
+
+[node name="STATE_End" type="Node" parent="GameState"]
+process_mode = 4
+script = ExtResource("2_jjydy")
+
+[node name="play_pyramid_close" type="Node" parent="GameState/STATE_End" node_paths=PackedStringArray("player")]
+script = ExtResource("3_utl4f")
+player = NodePath("../../../pyramid/AnimationPlayer")
+animation_name = "Pyramid_Open"
+reverse = true
+
+[node name="STATE_Reset" type="Node" parent="GameState"]
+process_mode = 4
+script = ExtResource("2_jjydy")
+
+[node name="GoToBeginAfter1" type="Node" parent="GameState/STATE_Reset"]
+script = ExtResource("4_00bpe")
+time = 1.0
+target_state = "STATE_Begin"
+
+[node name="play_pyramid_close" type="Node" parent="GameState/STATE_Reset" node_paths=PackedStringArray("player")]
+script = ExtResource("3_utl4f")
+player = NodePath("../../../pyramid/AnimationPlayer")
+animation_name = "Pyramid_Open"
+reverse = true
+
+[node name="pyramid" parent="." instance=ExtResource("6_gkte1")]
 
 [node name="Map" parent="." instance=ExtResource("2_2bc4d")]
 unique_name_in_owner = true
@@ -70,13 +139,16 @@ tower_prefab = ExtResource("5_rtwpd")
 visible = false
 mesh = SubResource("BoxMesh_ad2qx")
 
-[connection signal="pressed" from="Control/VBoxContainer/New Path Button" to="pyramid/play_animation_open" method="play"]
-[connection signal="pressed" from="Control/VBoxContainer/New Path Button" to="Map/Maze" method="create_new_maze"]
+[connection signal="enabling" from="GameState/STATE_Menu" to="GameState/STATE_Menu/GoToBegin" method="go_to_state"]
+[connection signal="enabling" from="GameState/STATE_Begin" to="Map/Maze" method="create_new_maze"]
+[connection signal="enabling" from="GameState/STATE_Begin" to="GameState/STATE_Begin/play_pyramid_open" method="play"]
+[connection signal="enabling" from="GameState/STATE_End" to="GameState/STATE_End/play_pyramid_close" method="play"]
+[connection signal="enabling" from="GameState/STATE_Reset" to="GameState/STATE_Reset/play_pyramid_close" method="play"]
+[connection signal="pressed" from="Control/VBoxContainer/New Path Button" to="GameState/STATE_Game/GoToReset" method="go_to_state"]
 [connection signal="pressed" from="Control/VBoxContainer/Place Tower button" to="Tower Placement Cursor" method="start_placing"]
 [connection signal="placing_started" from="Tower Placement Cursor" to="Control/VBoxContainer/Tower Placing Indicator" method="show"]
 [connection signal="placing_started" from="Tower Placement Cursor" to="Tower Placement Cursor/Indicator" method="show"]
 [connection signal="tower_placed" from="Tower Placement Cursor" to="Control/VBoxContainer/Tower Placing Indicator" method="hide"]
 [connection signal="tower_placed" from="Tower Placement Cursor" to="Tower Placement Cursor/Indicator" method="hide"]
 
-[editable path="pyramid"]
 [editable path="Map"]
