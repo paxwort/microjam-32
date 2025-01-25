@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://fr34fgu1f1go"]
+
+[ext_resource type="Script" path="res://scripts/PathFollowMovement.gd" id="1_3q7i5"]
+
+[node name="PathFollow3D" type="PathFollow3D"]
+transform = Transform3D(-4.37113e-08, 0, 0.999999, 0, 1, 0, -0.999999, 0, -4.37113e-08, 0, 0, 0)
+loop = false
+script = ExtResource("1_3q7i5")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://out2isyt6elw"]
+[gd_scene load_steps=6 format=3 uid="uid://out2isyt6elw"]
 
 [ext_resource type="MeshLibrary" uid="uid://c3d5okgea5o32" path="res://assets/KenneyNL_TowerDefence/tiles.tres" id="1_jjsu2"]
-[ext_resource type="Script" path="res://scripts/EnemyMovement.gd" id="2_7rg2u"]
-[ext_resource type="PackedScene" uid="uid://cuth0xesfkrla" path="res://assets/KenneyNL_TowerDefence/enemy-ufo-c.glb" id="2_wj6t5"]
+[ext_resource type="PackedScene" uid="uid://c28v1lcjn3ks4" path="res://prefabs/spawner.tscn" id="2_5h3f7"]
+[ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemy_1.tscn" id="3_7aebo"]
+[ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemy_2.tscn" id="4_a5sgv"]
 
 [sub_resource type="Curve3D" id="Curve3D_bd0po"]
 _data = {
@@ -25,13 +26,8 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.25, 0.5)
 curve = SubResource("Curve3D_bd0po")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="GridMap/Path3D"]
-transform = Transform3D(-4.37113e-08, 0, -0.999999, 0, 1, 0, 0.999999, 0, -4.37113e-08, -2.48319, 0, -1)
-progress = 5.9315
-script = ExtResource("2_7rg2u")
-
-[node name="enemy-ufo-c2" parent="GridMap/Path3D/PathFollow3D" instance=ExtResource("2_wj6t5")]
-transform = Transform3D(-2.18557e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18557e-08, 0, 0.5, 0)
+[node name="Spawner" parent="GridMap/Path3D" instance=ExtResource("2_5h3f7")]
+PrefabList = Array[PackedScene]([ExtResource("3_7aebo"), ExtResource("4_a5sgv")])
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, -0.7)
