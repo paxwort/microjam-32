@@ -1,0 +1,38 @@
+{
+	"wave_1": [
+		{
+			"type": "enemy_1",
+			"count": 10,
+			"wait_time": 0.2
+		},
+		{
+			"type": "enemy_2",
+			"count": 5,
+			"wait_time": 2
+		}
+	],
+	"wave_2": [
+		{
+			"type": "enemy_2",
+			"count": 3,
+			"wait_time": 0.5
+		},
+		{
+			"type": "enemy_2",
+			"count": 5,
+			"wait_time": 1
+		}
+	],
+	"wave_3": [
+		{
+			"type": "enemy_2",
+			"count": 2,
+			"wait_time": 0.6
+		},
+		{
+			"type": "enemy_1",
+			"count": 3,
+			"wait_time": 2
+		}
+	],
+}
