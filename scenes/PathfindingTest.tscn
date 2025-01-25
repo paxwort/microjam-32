@@ -2,8 +2,8 @@
 
 [ext_resource type="MeshLibrary" uid="uid://c3d5okgea5o32" path="res://assets/KenneyNL_TowerDefence/tiles.tres" id="1_jjsu2"]
 [ext_resource type="PackedScene" uid="uid://c28v1lcjn3ks4" path="res://prefabs/spawner.tscn" id="2_5h3f7"]
-[ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemy_1.tscn" id="3_7aebo"]
-[ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemy_2.tscn" id="4_a5sgv"]
+[ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemies/enemy_1.tscn" id="3_7aebo"]
+[ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemies/enemy_2.tscn" id="4_a5sgv"]
 [ext_resource type="PackedScene" uid="uid://caue7rc1m70vr" path="res://prefabs/towers/crossbow_tower.tscn" id="5_e6c75"]
 
 [sub_resource type="Curve3D" id="Curve3D_bd0po"]

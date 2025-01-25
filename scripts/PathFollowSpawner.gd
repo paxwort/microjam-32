@@ -18,12 +18,12 @@ var CurrentSpawnSet: SpawnCommand
 @export var enemyTypes: Dictionary
 
 func _init() -> void:
-	PathFollower = preload("res://prefabs/enemy_path_follower.tscn")
+	PathFollower = preload("res://prefabs/enemies/enemy_path_follower.tscn")
+	GameManager.reset_game_state.connect(_reset_level)
 
 func _ready() -> void:
 	_path = get_parent()
-	var json_string = _load_file_as_string(WaveStructurePath)
-	WaveData = WaveParser.ParseJsonWaveData(json_string)
+	_reset_level()
 
 func _process(delta: float) -> void:
 	if CurrentSpawnSet == null || CurrentSpawnSet.count <= 0:
@@ -70,9 +70,16 @@ func _load_level_wave():
 		SpawnQueue = WaveData[level_name]
 	else:
 		print("No level data available for %s" % level_name)
+		
+func _reset_level() -> void:
+	var json_string = _load_file_as_string(WaveStructurePath)
+	WaveData = WaveParser.ParseJsonWaveData(json_string)
+	LevelCounter = 0
+	SpawnQueue = []
+	SpawnWaitTime = 0
+	RemainingWaitTime = 0
 
-
-func _on_begin_round_button_pressed() -> void:
+func _start_round() -> void:
 	LevelCounter+=1
 	print("Loading level %s" % LevelCounter)
 	_load_level_wave()
