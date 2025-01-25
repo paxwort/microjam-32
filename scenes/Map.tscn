@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://srhpt5107l1u"]
+[gd_scene load_steps=6 format=3 uid="uid://srhpt5107l1u"]
 
 [ext_resource type="MeshLibrary" uid="uid://2a5q0dfb5c2e" path="res://art_assets/squares_of_cells.res" id="1_cgfyf"]
 [ext_resource type="Script" path="res://scripts/MazeMesher.gd" id="1_vfpy7"]
 [ext_resource type="Script" path="res://scripts/Maze.gd" id="3_oud8r"]
+[ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementPlane.gd" id="4_qwor0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l6jv4"]
+size = Vector3(20, 1, 20)
 
 [node name="Map" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
@@ -20,5 +24,14 @@ data = {
 "cells": PackedInt32Array(1, 0, 0, 2, 0, 10, 3, 0, 11, 2, 1, 111, 1, 1, 111, 0, 1, 111, 0, 0, 111, 0, 65535, 111, 1, 65535, 111, 3, 2, 1010, 2, 2, 1010, 2, 3, 1011, 0, 3, 1100, 1, 2, 1100, 0, 2, 1100, 1, 3, 1100, 65533, 3, 1101, 65533, 4, 1110, 65532, 4, 1111, 65533, 2, 1110, 65533, 1, 1101, 65532, 2, 1011, 65532, 1, 111, 65532, 65531, 0, 65533, 65531, 0, 65534, 65532, 0, 65534, 65531, 0, 65534, 65533, 1111, 65533, 65533, 1111)
 }
 script = ExtResource("1_vfpy7")
+
+[node name="TowerPlacementPlane" type="StaticBody3D" parent="Maze"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009, 1, 0.024)
+collision_layer = 256
+script = ExtResource("4_qwor0")
+
+[node name="Shape" type="CollisionShape3D" parent="Maze/TowerPlacementPlane"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+shape = SubResource("BoxShape3D_l6jv4")
 
 [connection signal="created" from="Maze" to="Maze/MazeMesher" method="_on_maze_created"]
