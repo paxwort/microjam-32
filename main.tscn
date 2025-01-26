@@ -28,8 +28,8 @@
 [ext_resource type="PackedScene" uid="uid://bmrysnx04toau" path="res://art_assets/ui/button_square.glb" id="19_iw33e"]
 [ext_resource type="Script" path="res://scripts/ui/MoneyDisplay.gd" id="20_f53f8"]
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementSelect.gd" id="21_l56ot"]
-[ext_resource type="Resource" path="res://prefabs/towers/spiketrap_tower_data.tres" id="23_a7ts0"]
-[ext_resource type="Resource" path="res://prefabs/towers/crossbow_tower_data.tres" id="24_njx8m"]
+[ext_resource type="Resource" uid="uid://cxuh6e33ntosr" path="res://prefabs/towers/spiketrap_tower_data.tres" id="23_a7ts0"]
+[ext_resource type="Resource" uid="uid://cfwf08lpd0xvp" path="res://prefabs/towers/crossbow_tower_data.tres" id="24_njx8m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ad2qx"]
 
