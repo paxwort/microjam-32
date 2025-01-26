@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=35 format=3 uid="uid://cjqln2kqwkwc4"]
 
 [ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
@@ -26,6 +26,7 @@
 [ext_resource type="Script" path="res://scripts/ui/DiegeticButton.gd" id="19_d2pne"]
 [ext_resource type="Script" path="res://scripts/ui/ScoreDisplay.gd" id="19_dibw2"]
 [ext_resource type="PackedScene" uid="uid://bmrysnx04toau" path="res://art_assets/ui/button_square.glb" id="19_iw33e"]
+[ext_resource type="Script" path="res://scripts/ui/MoneyDisplay.gd" id="20_f53f8"]
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementSelect.gd" id="21_l56ot"]
 [ext_resource type="Resource" path="res://prefabs/towers/spiketrap_tower_data.tres" id="23_a7ts0"]
 [ext_resource type="Resource" path="res://prefabs/towers/crossbow_tower_data.tres" id="24_njx8m"]
@@ -235,6 +236,30 @@ font_size = 200
 outline_size = 24
 script = ExtResource("19_dibw2")
 
+[node name="Money_Button" parent="GameState/STATE_Game/stats" instance=ExtResource("19_iw33e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639267, 0.489027, -7.42565)
+
+[node name="Label3D" type="Label3D" parent="GameState/STATE_Game/stats/Money_Button"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0.045249, 0.415932, 0.87339)
+modulate = Color(0.761328, 0.5436, 0.116608, 1)
+outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
+text = "Money
+"
+font = ExtResource("18_odmy1")
+font_size = 140
+outline_size = 24
+
+[node name="MoneyTracker" type="Label3D" parent="GameState/STATE_Game/stats/Money_Button"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0.045249, 0.415932, 0.257974)
+modulate = Color(0.837846, 0.760556, 0.786287, 1)
+outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
+text = "
+9999"
+font = ExtResource("18_odmy1")
+font_size = 200
+outline_size = 24
+script = ExtResource("20_f53f8")
+
 [node name="RoundState" type="Node" parent="GameState/STATE_Game"]
 script = ExtResource("1_c7j07")
 active_state_key = "STATE_Towersetup"
@@ -436,6 +461,7 @@ process_mode = 3
 [editable path="GameState/STATE_Game/shop/button_buy_crossbow"]
 [editable path="GameState/STATE_Game/stats/Health_Score"]
 [editable path="GameState/STATE_Game/stats/Health_Score2"]
+[editable path="GameState/STATE_Game/stats/Money_Button"]
 [editable path="GameState/STATE_Game/RoundState/STATE_Towersetup/Button_Next_Round"]
 [editable path="Map"]
 [editable path="pyramid"]
