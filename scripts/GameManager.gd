@@ -28,11 +28,15 @@ func _end_game() -> void:
 	print("Game Over")
 	GameInProgress = false
 	game_over.emit()
+	_start_new_game()
 	
 func trigger_next_wave() -> void:
 	CurrentWave += 1
 	print("Triggering wave %s" % CurrentWave)
-	start_next_wave.emit(CurrentWave)
+	if (CurrentWave == 7):
+		_end_game()
+	else:
+		start_next_wave.emit(CurrentWave)
 	
 
 func add_score(score: int = 1) -> void:

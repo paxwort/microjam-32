@@ -453,6 +453,7 @@ bus = &"SFX"
 [connection signal="enabling" from="GameState/STATE_Begin" to="Map/Maze" method="create_new_maze"]
 [connection signal="enabling" from="GameState/STATE_Begin" to="Notify1" method="play" binds= [0.0]]
 [connection signal="enabling" from="GameState/STATE_Resume" to="GameState/STATE_Resume/play_pyramid_open" method="play"]
+[connection signal="enabling" from="GameState/STATE_Game" to="GameState/STATE_Game/RoundState/STATE_Play/GoToTowerSetup" method="go_to_state"]
 [connection signal="game_over" from="GameState/STATE_Game/GameOver Relay" to="GameState/STATE_Game/GoToEnd" method="go_to_state"]
 [connection signal="placing_started" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicators" method="show"]
 [connection signal="tower_placed" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicators" method="hide"]
