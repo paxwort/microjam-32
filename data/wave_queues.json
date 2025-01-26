@@ -4,9 +4,50 @@
 			"type": "enemy_croc",
 			"count": 5,
 			"wait_time": 1
+		},
+		{
+			"type": "enemy_croc",
+			"count": 2,
+			"wait_time": 2
 		}
 	],
-	"wave_2": [
+	"wave_2":[
+		{
+			"type": "enemy_croc",
+			"count": 8,
+			"wait_time": 1
+		},
+		{
+			"type": "enemy_indy",
+			"count": 1,
+			"wait_time": 2
+		}
+	],
+	"wave_3":[
+		{
+			"type": "enemy_croc",
+			"count": 5,
+			"wait_time": 1
+		},
+		{
+			"type": "enemy_indy",
+			"count": 4,
+			"wait_time": 2
+		}
+	],
+	"wave_4":[
+		{
+			"type": "enemy_indy",
+			"count": 7,
+			"wait_time": 1
+		},
+		{
+			"type": "enemy_roman",
+			"count": 2,
+			"wait_time": 1
+		}
+	],
+	"wave_5": [
 		{
 			"type": "enemy_roman",
 			"count": 3,
@@ -18,16 +59,21 @@
 			"wait_time": 2
 		}
 	],
-	"wave_3": [
+	"wave_6": [
 		{
 			"type": "enemy_croc",
-			"count": 2,
-			"wait_time": 1
+			"count": 20,
+			"wait_time": 0.1
 		},
 		{
 			"type": "enemy_roman",
 			"count": 3,
 			"wait_time": 2
-		}
+		},
+		{
+			"type": "enemy_croc",
+			"count": 20,
+			"wait_time": 0.1
+		},
 	],
 }

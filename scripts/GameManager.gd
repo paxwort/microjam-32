@@ -20,7 +20,7 @@ func _start_new_game() -> void:
 	GameInProgress = true
 	CurrentWave = 0
 	Score = 0
-	Wallet = 250
+	Wallet = 101
 	Health = MAX_HEALTH
 	reset_game_state.emit()
 

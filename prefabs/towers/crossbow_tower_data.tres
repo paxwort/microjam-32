@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_prc8i")
 tower_prefab = ExtResource("2_tcbfg")
-cost = 200
+cost = 100
 can_place_path = false
 can_place_wall = true
 can_place_neighbouring_path = false
