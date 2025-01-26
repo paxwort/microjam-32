@@ -8,7 +8,6 @@ var _path: Path3D
 
 var WaveData: Dictionary
 var SpawnQueue: Array = []
-var LevelCounter = 0
 
 var SpawnWaitTime = 0.0
 var RemainingWaitTime = 0.0
@@ -20,6 +19,7 @@ var CurrentSpawnSet: SpawnCommand
 func _init() -> void:
 	PathFollower = preload("res://prefabs/enemies/enemy_path_follower.tscn")
 	GameManager.reset_game_state.connect(_reset_level)
+	GameManager.start_next_wave.connect(Start_round)
 
 func _ready() -> void:
 	_path = get_parent()
@@ -64,8 +64,8 @@ func _load_file_as_string(file):
 	var content = f.get_as_text()
 	return content
 	
-func _load_level_wave():
-	var level_name = "wave_%s" % LevelCounter
+func _load_level_wave(WaveNumber: int):
+	var level_name = "wave_%s" % WaveNumber
 	if(WaveData.has(level_name) && WaveData[level_name].size() != 0):
 		SpawnQueue = WaveData[level_name]
 	else:
@@ -74,12 +74,10 @@ func _load_level_wave():
 func _reset_level() -> void:
 	var json_string = _load_file_as_string(WaveStructurePath)
 	WaveData = WaveParser.ParseJsonWaveData(json_string)
-	LevelCounter = 0
 	SpawnQueue = []
 	SpawnWaitTime = 0
 	RemainingWaitTime = 0
 
-func _start_round() -> void:
-	LevelCounter+=1
-	print("Loading level %s" % LevelCounter)
-	_load_level_wave()
+func Start_round(WaveNumber: int) -> void:
+	print("Loading level %s" % WaveNumber)
+	_load_level_wave(WaveNumber)
