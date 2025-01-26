@@ -14,19 +14,31 @@ func maze_to_world_coordinate(maze_coordinate : Vector2i) -> Vector3:
 	return global_position + Vector3(maze_coordinate.x, 1.5, maze_coordinate.y)
 
 func create_new_maze():
-	var max_iterations = 20
-	var path : Array[Vector2i]= [] 
-	while(max_iterations > 0):	
-		flood_empty()
-		var start = Vector2i(size_x / 2, 0)
-		generate_maze(start)
-		var new_path = find_nice_path(start)
-		if(new_path.size() > path.size()):
-			path = new_path
-		max_iterations -= 1
+	var start = Vector2i(size_x / 2, 0)
+	flood_empty()
+	protect_edge()
+	cut_path([start])
+	generate_maze(start + Vector2i(0,1))
+	var path = find_nice_path(start, 5)
+	var	end = path.back()
+	flood_empty()
+	protect_edge()
+	cut_path(path)
+	created.emit()
+	
+	#second iteration
+	protect_path(path)
+	var next = end
+	for n in get_cell_neighbour_positions(end.x, end.y):
+		if get_cell(n.x, n.y) == 2:
+			set_cell(n.x, n.y, 0)
+			next = n
+	generate_maze(next)
+	created.emit()
+	path = find_nice_path(start, 5)
+	set_game_path(path)
 	flood_empty()
 	cut_path(path)
-	set_game_path(path)
 	created.emit()
 
 func get_cell_neighbours(x, y) -> Array[int]:
@@ -35,6 +47,15 @@ func get_cell_neighbours(x, y) -> Array[int]:
 		get_cell(x + 1,y),
 		get_cell(x,y - 1),
 		get_cell(x,y + 1)
+	]
+	return neighbours
+
+func get_cell_neighbour_positions(x, y) -> Array[Vector2i]:
+	var neighbours: Array[Vector2i] = [
+		Vector2i(x - 1,y),
+		Vector2i(x + 1,y),
+		Vector2i(x,y - 1),
+		Vector2i(x,y + 1)
 	]
 	return neighbours
 
@@ -57,12 +78,31 @@ func cut_path(path : Array[Vector2i]):
 	for v in path:
 		set_cell(v.x, v.y, 1)
 
+func protect_path(path: Array[Vector2i]):
+	for v in path:
+		for n in get_cell_neighbour_positions(v.x, v.y):
+			if get_cell(n.x, n.y) == 0:
+				set_cell(n.x, n.y, 2)
+
+
 func flood_empty() -> void:
 	cells = []
 	for x in range(0,size_x):
 		cells.push_back([])
 		for y in range(0, size_y):
 			cells[x].push_back(0)
+			
+func protect_edge() -> void:
+	for x in range(0,size_x):
+		if get_cell(x,0) == 0:
+			set_cell(x,0, 2)
+		if get_cell(x, size_y - 1) == 0:
+			set_cell(x, size_y - 1, 2)
+	for y in range(0, size_y):
+		if get_cell(0,y) == 0:
+			set_cell(0,y, 2)
+		if get_cell(size_x - 1, y) == 0:
+			set_cell(size_x - 1, y, 2)
 
 func generate_maze(start : Vector2i):
 	var frontier : Array
@@ -96,7 +136,7 @@ class DijkstraNode:
 		prev = p_prev
 
 #Dijkstra the maze to find a nice path by some heuristic
-func find_nice_path(start : Vector2i):
+func find_nice_path(start : Vector2i, threshhold : int):
 	var open_set = [DijkstraNode.new(start, 0)]
 	var visited = {}
 	var distances = {}
@@ -111,14 +151,13 @@ func find_nice_path(start : Vector2i):
 		visited[current.position] = true
 		
 		if(current.distance > best_node.distance):
-			var threshhold = 4
 			if(Vector2i(size_x / 2, size_y / 2) - current.position).length() < threshhold:
 				best_node = current
 		
 		for offset in neighbour_offsets:
 			var next_position = current.position + offset
 			if get_cell(next_position.x, next_position.y) == 1:
-				var new_distance = current.distance + 21
+				var new_distance = current.distance + 1
 				if not distances.has(next_position) or new_distance < distances[next_position].distance:
 					var next_node = DijkstraNode.new(next_position, new_distance, current)
 					distances[next_position] = next_node
