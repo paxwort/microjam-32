@@ -8,3 +8,4 @@ func go_to_state() -> void:
 		if wait_for_frame: 
 			await get_tree().physics_frame
 		state.machine.transition_to(target_state)
+		print("GO TO " + target_state)
