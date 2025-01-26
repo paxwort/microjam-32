@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://srhpt5107l1u"]
+[gd_scene load_steps=6 format=3 uid="uid://srhpt5107l1u"]
 
 [ext_resource type="MeshLibrary" uid="uid://2a5q0dfb5c2e" path="res://art_assets/squares_of_cells.res" id="1_cgfyf"]
 [ext_resource type="Script" path="res://scripts/MazeMesher.gd" id="1_vfpy7"]
-[ext_resource type="PackedScene" uid="uid://dapdhwtxbd6t" path="res://art_assets/Sarcophagus.glb" id="2_ccbbl"]
-[ext_resource type="Script" path="res://scripts/sarcophagusFollow.gd" id="2_e2e8m"]
 [ext_resource type="Script" path="res://scripts/Maze.gd" id="3_oud8r"]
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementPlane.gd" id="4_qwor0"]
 
@@ -18,14 +16,6 @@ script = ExtResource("3_oud8r")
 
 [node name="MazePath" type="Path3D" parent="Maze"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="SarcophagusFollow" type="PathFollow3D" parent="Maze/MazePath"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.7, 0, 0)
-progress = 4.7
-script = ExtResource("2_e2e8m")
-
-[node name="Sarcophagus" parent="Maze/MazePath/SarcophagusFollow" instance=ExtResource("2_ccbbl")]
-transform = Transform3D(1.52832, 0, 0, 0, 1.52832, 0, 0, 0, 1.52832, 0, 0, 0)
 
 [node name="MazeMesher" type="GridMap" parent="Maze"]
 mesh_library = ExtResource("1_cgfyf")
