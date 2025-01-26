@@ -30,6 +30,10 @@ func trigger_next_wave() -> void:
 	start_next_wave.emit(CurrentWave)
 	
 
+func add_score(score: int = 1) -> void:
+	Score += score
+	print("Score: %s" % Score)
+
 func on_enemy_reached_end_of_run() -> void:
 	if GameInProgress:
 		Health -= 1

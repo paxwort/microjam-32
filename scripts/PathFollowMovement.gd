@@ -14,7 +14,8 @@ func WithMovement(movement: MovementComponent) -> PathFollowMovement:
 	return self
 
 func _process(delta: float) -> void:
-	progress += _movement.speed * delta
+	if _movement and not _movement.is_queued_for_deletion():
+		progress += _movement.speed * delta
 	if progress_ratio >= 1:
 		_end_of_run()
 

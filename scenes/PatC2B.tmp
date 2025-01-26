@@ -62,7 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366065, -0.210481)
 
 [node name="WeaponFireComponent" parent="CrossbowTower" index="2"]
 fire_rate = 0.5
-projectile_speed = 5.0
+projectile_speed = 25.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.85512, 0)
