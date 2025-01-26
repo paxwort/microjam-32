@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=34 format=3 uid="uid://cjqln2kqwkwc4"]
 
 [ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
@@ -12,6 +12,7 @@
 [ext_resource type="Material" uid="uid://chj0byxde1hmk" path="res://assets/materials/indicator_invalid.tres" id="7_813af"]
 [ext_resource type="Script" path="res://scripts/Pause-Resume.gd" id="7_m0nf8"]
 [ext_resource type="Material" uid="uid://jdrp6rhfkskx" path="res://assets/materials/indicator_valid.tres" id="7_nbnsr"]
+[ext_resource type="Script" path="res://scripts/game_over_relay.gd" id="8_biu1t"]
 [ext_resource type="PackedScene" uid="uid://c28v1lcjn3ks4" path="res://prefabs/spawner.tscn" id="8_ips6i"]
 [ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemies/enemy_1.tscn" id="9_jyc2j"]
 [ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemies/enemy_2.tscn" id="10_bt8ur"]
@@ -104,6 +105,9 @@ wait_for_frame = true
 [node name="GoToReset" type="Node" parent="GameState/STATE_Game"]
 script = ExtResource("3_cdlvk")
 target_state = "STATE_Reset"
+
+[node name="GameOver Relay" type="Node" parent="GameState/STATE_Game"]
+script = ExtResource("8_biu1t")
 
 [node name="GoToEnd" type="Node" parent="GameState/STATE_Game"]
 script = ExtResource("3_cdlvk")
@@ -276,6 +280,9 @@ script = ExtResource("19_5alqc")
 process_mode = 4
 script = ExtResource("2_jjydy")
 
+[node name="MenuVisibility" type="Node" parent="GameState/STATE_End"]
+script = ExtResource("3_flvjl")
+
 [node name="play_pyramid_close" type="Node" parent="GameState/STATE_End" node_paths=PackedStringArray("player")]
 script = ExtResource("3_utl4f")
 player = NodePath("../../../pyramid/AnimationPlayer")
@@ -389,6 +396,7 @@ process_mode = 3
 [connection signal="enabling" from="GameState/STATE_Begin" to="GameState/STATE_Begin/play_pyramid_open" method="play"]
 [connection signal="enabling" from="GameState/STATE_Begin" to="Map/Maze" method="create_new_maze"]
 [connection signal="enabling" from="GameState/STATE_Resume" to="GameState/STATE_Resume/play_pyramid_open" method="play"]
+[connection signal="game_over" from="GameState/STATE_Game/GameOver Relay" to="GameState/STATE_Game/GoToEnd" method="go_to_state"]
 [connection signal="placing_started" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicators" method="show"]
 [connection signal="placing_started" from="GameState/STATE_Game/TowerPlacementCursor" to="Control/VBoxContainer/Tower Placing Indicator" method="show"]
 [connection signal="tower_placed" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicators" method="hide"]
@@ -400,6 +408,9 @@ process_mode = 3
 [connection signal="pressed" from="GameState/STATE_Game/RoundState/STATE_Towersetup/Button_Next_Round" to="GameState/STATE_Game/RoundState/STATE_Towersetup/GoToPlay" method="go_to_state"]
 [connection signal="enabling" from="GameState/STATE_Game/RoundState/STATE_Play" to="GameState/STATE_Game/RoundState/STATE_Play/Trigger Wave" method="trigger_wave"]
 [connection signal="enabling" from="GameState/STATE_End" to="GameState/STATE_End/play_pyramid_close" method="play"]
+[connection signal="relay" from="GameState/STATE_End/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu" method="hide"]
+[connection signal="relay" from="GameState/STATE_End/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu" method="hide"]
+[connection signal="relay" from="GameState/STATE_End/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu" method="show"]
 [connection signal="enabling" from="GameState/STATE_Paused" to="GameState/STATE_End/play_pyramid_close" method="play"]
 [connection signal="enabling" from="GameState/STATE_Paused" to="GameState/STATE_Paused/MenuVisibility" method="do_signal"]
 [connection signal="relay" from="GameState/STATE_Paused/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu" method="hide"]

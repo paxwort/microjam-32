@@ -9,6 +9,7 @@ var CurrentWave: int
 
 signal reset_game_state
 signal start_next_wave(WaveNumber)
+signal game_over
 
 func _init() -> void:
 	_start_new_game()
@@ -23,6 +24,7 @@ func _start_new_game() -> void:
 func _end_game() -> void:
 	print("Game Over")
 	GameInProgress = false
+	game_over.emit()
 	
 func trigger_next_wave() -> void:
 	CurrentWave += 1
