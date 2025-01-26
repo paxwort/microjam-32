@@ -18,8 +18,7 @@ func _kill_self(body: Node3D) -> void:
 		parent.queue_free()
 
 
-func _on_projectile_collision_area_body_entered(body: Node3D) -> void:
+func _on_damage_collision_area_body_entered(body: Node3D) -> void:
 	if(body.get_parent() is Projectile and body.get_parent().is_active):
-		print("Took damage from %s" % body.name)
 		Health.take_damage(1)
 		body.get_parent().explode()

@@ -19,9 +19,10 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var direction = Vector3(0, 0, -1).normalized()
-	direction = direction.rotated(Vector3.UP, rotation.y)
-	position += direction * _speed * delta
+	if is_active:
+		var direction = Vector3(0, 0, -1).normalized()
+		direction = direction.rotated(Vector3.UP, rotation.y)
+		position += direction * _speed * delta
 
 func set_speed(speed: float) -> void:
 	_speed=speed
@@ -30,6 +31,5 @@ func _on_destruction_timer_timeout() -> void:
 	queue_free()
 	
 func explode():
-	print("Collision detected")
 	is_active = false
 	queue_free()
