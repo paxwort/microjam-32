@@ -3,6 +3,7 @@ extends Node3D
 
 @export var _speed:float = 1
 @export var oneshot : bool = true
+@export var damage_amount : float = 1
 var destruction_timer: Timer
 var is_active: bool = false
 @onready var collision_shape: CollisionShape3D = $RigidBody3D/CollisionShape3D

@@ -11,6 +11,7 @@ height = 0.58717
 
 [node name="CrossbowBolt" type="Node3D"]
 script = ExtResource("1_dj408")
+damage_amount = 1.8
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0165814, 0, 0, 0, -7.24797e-10, -0.0165814, 0, 0.0165814, -7.24797e-10, 0, 0, 0)
