@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdcit6wslybiv"]
+[gd_scene load_steps=7 format=3 uid="uid://bdcit6wslybiv"]
 
 [ext_resource type="Script" path="res://scripts/enemy_components/EnemyController.gd" id="1_ixtn4"]
 [ext_resource type="PackedScene" uid="uid://c020c1aay72pp" path="res://art_assets/enemies/Indy.glb" id="2_qfik6"]
 [ext_resource type="Script" path="res://scripts/enemy_components/MovementComponent.gd" id="3_cauty"]
 [ext_resource type="Script" path="res://scripts/enemy_components/TrackableComponent.gd" id="4_k8yv2"]
+[ext_resource type="Script" path="res://scripts/enemy_components/HealthComponent.gd" id="5_co151"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wupps"]
 
-[node name="Indy" type="CharacterBody3D" node_paths=PackedStringArray("Movement")]
+[node name="Indy" type="CharacterBody3D" node_paths=PackedStringArray("Movement", "Health")]
 script = ExtResource("1_ixtn4")
 Movement = NodePath("MovementNode")
+Health = NodePath("HealthComponent")
 
 [node name="Indy" parent="." instance=ExtResource("2_qfik6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -48,5 +50,9 @@ script = ExtResource("4_k8yv2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.404585, 0)
 shape = SubResource("SphereShape3D_wupps")
+
+[node name="HealthComponent" type="Node3D" parent="."]
+script = ExtResource("5_co151")
+MAX_HEALTH = 3
 
 [editable path="Indy"]

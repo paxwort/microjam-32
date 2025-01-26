@@ -14,7 +14,6 @@ func _process(delta: float) -> void:
 		$"../WeaponFireComponent".fire_weapon(targeted.global_transform)
 	
 func _on_body_entered(body : Node3D) -> void:
-	print("body entered")
 	var trackables = body.find_children("*", "TrackableComponent")
 	if trackables.size() > 0:
 		tracked.push_back(body)

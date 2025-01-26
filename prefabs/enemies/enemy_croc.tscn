@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbxn1et2iualn"]
+[gd_scene load_steps=7 format=3 uid="uid://dbxn1et2iualn"]
 
 [ext_resource type="Script" path="res://scripts/enemy_components/EnemyController.gd" id="1_7uu72"]
 [ext_resource type="PackedScene" uid="uid://b46l284jas2ld" path="res://art_assets/enemies/crocodile.glb" id="2_2ohyw"]
 [ext_resource type="Script" path="res://scripts/enemy_components/MovementComponent.gd" id="3_adta4"]
 [ext_resource type="Script" path="res://scripts/enemy_components/TrackableComponent.gd" id="4_cwif8"]
+[ext_resource type="Script" path="res://scripts/enemy_components/HealthComponent.gd" id="5_yplrs"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wupps"]
 
-[node name="Croc" type="CharacterBody3D" node_paths=PackedStringArray("Movement")]
+[node name="Croc" type="CharacterBody3D" node_paths=PackedStringArray("Movement", "Health")]
 script = ExtResource("1_7uu72")
 Movement = NodePath("MovementNode")
+Health = NodePath("HealthComponent")
 
 [node name="crocodile" parent="." instance=ExtResource("2_2ohyw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
@@ -42,5 +44,19 @@ script = ExtResource("4_cwif8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.404585, 0)
 shape = SubResource("SphereShape3D_wupps")
+
+[node name="HealthComponent" type="Node3D" parent="."]
+script = ExtResource("5_yplrs")
+MAX_HEALTH = 1
+
+[node name="ProjectileCollisionArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileCollisionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.404585, 0)
+shape = SubResource("SphereShape3D_wupps")
+
+[connection signal="body_entered" from="ProjectileCollisionArea" to="." method="_on_projectile_collision_area_body_entered"]
 
 [editable path="crocodile"]

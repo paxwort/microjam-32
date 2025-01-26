@@ -28,5 +28,4 @@ func fire_weapon(target_pos: Transform3D) -> void:
 		new_projectile.look_at(target_pos.origin, Vector3.UP)
 		new_projectile.rotation.z = deg_to_rad(90)
 		new_projectile.set_speed(projectile_speed)
-		print(new_projectile.rotation)
 		

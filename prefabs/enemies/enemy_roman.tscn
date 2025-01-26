@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://6838mpvlhuxx"]
+[gd_scene load_steps=7 format=3 uid="uid://6838mpvlhuxx"]
 
 [ext_resource type="Script" path="res://scripts/enemy_components/EnemyController.gd" id="1_kl4ny"]
 [ext_resource type="Script" path="res://scripts/enemy_components/MovementComponent.gd" id="3_jkcse"]
 [ext_resource type="PackedScene" uid="uid://dr0utl4p040lq" path="res://art_assets/enemies/roman.glb" id="4_arg8y"]
 [ext_resource type="Script" path="res://scripts/enemy_components/TrackableComponent.gd" id="4_q8ak1"]
+[ext_resource type="Script" path="res://scripts/enemy_components/HealthComponent.gd" id="5_wciuh"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wupps"]
 
-[node name="Roman" type="CharacterBody3D" node_paths=PackedStringArray("Movement")]
+[node name="Roman" type="CharacterBody3D" node_paths=PackedStringArray("Movement", "Health")]
 script = ExtResource("1_kl4ny")
 Movement = NodePath("MovementNode")
+Health = NodePath("HealthComponent")
 
 [node name="MovementNode" type="Node3D" parent="."]
 script = ExtResource("3_jkcse")
@@ -41,5 +43,8 @@ bones/17/rotation = Quaternion(-0.000824805, 0.000144207, 0.172267, 0.98505)
 
 [node name="AnimationPlayer" parent="roman" index="1"]
 autoplay = "Roman Walk"
+
+[node name="HealthComponent" type="Node3D" parent="."]
+script = ExtResource("5_wciuh")
 
 [editable path="roman"]
