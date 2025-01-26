@@ -21,7 +21,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_active:
 		var direction = Vector3(0, 0, -1).normalized()
-		direction = direction.rotated(Vector3.UP, rotation.y)
+		direction = -transform.basis.z
 		position += direction * _speed * delta
 
 func set_speed(speed: float) -> void:
