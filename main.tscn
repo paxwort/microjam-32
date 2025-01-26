@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=33 format=3 uid="uid://cjqln2kqwkwc4"]
 
 [ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
@@ -21,12 +21,13 @@
 [ext_resource type="PackedScene" uid="uid://6838mpvlhuxx" path="res://prefabs/enemies/enemy_roman.tscn" id="13_yqiol"]
 [ext_resource type="Script" path="res://scripts/ui/HealthDisplay.gd" id="17_qjf4m"]
 [ext_resource type="FontFile" uid="uid://kuabpcxa6ck4" path="res://assets/fonts/Zatanna Misdirection.otf" id="18_odmy1"]
+[ext_resource type="Script" path="res://scripts/trigger_wave.gd" id="19_5alqc"]
 [ext_resource type="Script" path="res://scripts/ui/DiegeticButton.gd" id="19_d2pne"]
 [ext_resource type="Script" path="res://scripts/ui/ScoreDisplay.gd" id="19_dibw2"]
 [ext_resource type="PackedScene" uid="uid://bmrysnx04toau" path="res://art_assets/ui/button_square.glb" id="19_iw33e"]
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementSelect.gd" id="21_l56ot"]
-[ext_resource type="Resource" path="res://prefabs/towers/spiketrap_tower_data.tres" id="23_a7ts0"]
-[ext_resource type="Resource" path="res://prefabs/towers/crossbow_tower_data.tres" id="24_njx8m"]
+[ext_resource type="Resource" uid="uid://cxuh6e33ntosr" path="res://prefabs/towers/spiketrap_tower_data.tres" id="23_a7ts0"]
+[ext_resource type="Resource" uid="uid://cfwf08lpd0xvp" path="res://prefabs/towers/crossbow_tower_data.tres" id="24_njx8m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ad2qx"]
 
@@ -268,6 +269,9 @@ script = ExtResource("2_jjydy")
 script = ExtResource("3_cdlvk")
 target_state = "STATE_Towersetup"
 
+[node name="Trigger Wave" type="Node" parent="GameState/STATE_Game/RoundState/STATE_Play"]
+script = ExtResource("19_5alqc")
+
 [node name="STATE_End" type="Node" parent="GameState"]
 process_mode = 4
 script = ExtResource("2_jjydy")
@@ -372,6 +376,9 @@ fit_content = true
 
 [node name="pyramid" parent="." instance=ExtResource("13_tao2x")]
 
+[node name="North_Anchor" parent="pyramid/Pyramid_Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.288751, 0, 0, 0, 0.288751, 0, 0, 0, 0.288751, 0, 0, -10.2578)
+
 [node name="AnimationPlayer" parent="pyramid" index="3"]
 process_mode = 3
 
@@ -391,7 +398,7 @@ process_mode = 3
 [connection signal="pressed" from="GameState/STATE_Game/shop/button_buy_crossbow" to="GameState/STATE_Game/shop/button_buy_crossbow/select_crossbow" method="select"]
 [connection signal="selected" from="GameState/STATE_Game/shop/button_buy_crossbow/select_crossbow" to="GameState/STATE_Game/TowerPlacementCursor" method="start_placing"]
 [connection signal="pressed" from="GameState/STATE_Game/RoundState/STATE_Towersetup/Button_Next_Round" to="GameState/STATE_Game/RoundState/STATE_Towersetup/GoToPlay" method="go_to_state"]
-[connection signal="enabling" from="GameState/STATE_Game/RoundState/STATE_Play" to="Map/Maze/MazePath/Spawner" method="_start_round"]
+[connection signal="enabling" from="GameState/STATE_Game/RoundState/STATE_Play" to="GameState/STATE_Game/RoundState/STATE_Play/Trigger Wave" method="trigger_wave"]
 [connection signal="enabling" from="GameState/STATE_End" to="GameState/STATE_End/play_pyramid_close" method="play"]
 [connection signal="enabling" from="GameState/STATE_Paused" to="GameState/STATE_End/play_pyramid_close" method="play"]
 [connection signal="enabling" from="GameState/STATE_Paused" to="GameState/STATE_Paused/MenuVisibility" method="do_signal"]
