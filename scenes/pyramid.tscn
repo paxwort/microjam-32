@@ -1,45 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://cht5gqlgvhwmc"]
+[gd_scene load_steps=5 format=3 uid="uid://cht5gqlgvhwmc"]
 
 [ext_resource type="PackedScene" uid="uid://cfnw8s4hun357" path="res://art_assets/pyramid.glb" id="1_85ei2"]
+[ext_resource type="PackedScene" uid="uid://dywm5vlt2mg2k" path="res://art_assets/ui/button_small.glb" id="2_hmseq"]
 [ext_resource type="Script" path="res://scripts/ui/DiegeticButton.gd" id="2_vb8qv"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_k1ixw"]
-size = Vector3(4.08411, 1, 1.54373)
+[ext_resource type="FontFile" uid="uid://kuabpcxa6ck4" path="res://assets/fonts/Zatanna Misdirection.otf" id="4_qnp5b"]
 
 [node name="pyramid" instance=ExtResource("1_85ei2")]
 
-[node name="ContinueButton" parent="Pyramid_Armature/Skeleton3D" index="0"]
-transform = Transform3D(-1, -1.99496e-07, -4.81626e-07, 1.99496e-07, 0.707107, -0.707107, 4.81626e-07, -0.707107, -0.707107, 0.0136987, 5.1467, -5.79673)
-visible = false
+[node name="North_Anchor" parent="Pyramid_Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.288751, 0, 0, 0, 0.288751, 0, 0, 0, 0.288751, 0, 0, -10.2578)
 
-[node name="ExitButton" parent="Pyramid_Armature/Skeleton3D" index="1"]
-transform = Transform3D(-1, -1.99496e-07, -4.81626e-07, 1.99496e-07, 0.707107, -0.707107, 4.81626e-07, -0.707107, -0.707107, -0.115013, 3.9098, -7.03362)
-visible = false
-
-[node name="PauseButton" parent="Pyramid_Armature/Skeleton3D" index="2"]
-transform = Transform3D(-1, -1.99496e-07, -4.81626e-07, 1.99496e-07, 0.707107, -0.707107, 4.81626e-07, -0.707107, -0.707107, 0.0136985, 6.4857, -4.45772)
-visible = false
-
-[node name="ExitButton_001" parent="Pyramid_Armature/Skeleton3D" index="3"]
-transform = Transform3D(-1, -3.98992e-07, -3.98992e-07, -2.84217e-14, 0.707107, -0.707107, 5.6426e-07, -0.707107, -0.707107, -1.37062, 3.9098, -7.03362)
+[node name="button_start" parent="Pyramid_Armature/Skeleton3D/North_Anchor" index="1" instance=ExtResource("2_hmseq")]
+transform = Transform3D(3.46319, 0, 0, 0, 2.44885, 2.44885, 0, -2.44885, 2.44885, 3.59711, 14.5755, 11.6996)
 script = ExtResource("2_vb8qv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Pyramid_Armature/Skeleton3D/ExitButton_001" index="0"]
-transform = Transform3D(1, 0, -2.84217e-14, 2.84217e-14, 1, 0, 2.84217e-14, 0, 1, 0, 0, 0)
-collision_layer = 512
+[node name="Label3D" type="Label3D" parent="Pyramid_Armature/Skeleton3D/North_Anchor/button_start/Button_Small" index="1"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0, 0.43225, -0.00335312)
+modulate = Color(0.835294, 0.478431, 0.372549, 1)
+outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
+text = "Start"
+font = ExtResource("4_qnp5b")
+font_size = 150
+outline_size = 24
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pyramid_Armature/Skeleton3D/ExitButton_001/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, -6.11067e-12, 2.84217e-14, 1, 0, 2.84217e-14, 0, 1, -0.015076, 0, -0.0217438)
-shape = SubResource("BoxShape3D_k1ixw")
-
-[node name="StartButton" parent="Pyramid_Armature/Skeleton3D" index="4"]
-transform = Transform3D(-1, -3.98992e-07, -3.98992e-07, -2.84217e-14, 0.707107, -0.707107, 5.6426e-07, -0.707107, -0.707107, 1.43702, 5.20178, -5.74165)
+[node name="button_exit" parent="Pyramid_Armature/Skeleton3D/North_Anchor" index="2" instance=ExtResource("2_hmseq")]
+transform = Transform3D(3.46319, 0, 0, 0, 2.44885, 2.44885, 0, -2.44885, 2.44885, -1.37914, 10.1041, 7.11678)
 script = ExtResource("2_vb8qv")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Pyramid_Armature/Skeleton3D/StartButton" index="0"]
-transform = Transform3D(1, 0, -8.52651e-14, 2.84217e-14, 1, 0, 2.84217e-14, 0, 1, 0, 0, 0)
-collision_layer = 512
+[node name="Label3D" type="Label3D" parent="Pyramid_Armature/Skeleton3D/North_Anchor/button_exit/Button_Small" index="1"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0, 0.43225, -0.00335312)
+modulate = Color(0.835294, 0.478431, 0.372549, 1)
+outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
+text = "Exit"
+font = ExtResource("4_qnp5b")
+font_size = 150
+outline_size = 24
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pyramid_Armature/Skeleton3D/StartButton/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, -6.11067e-12, 2.84217e-14, 1, 0, 2.84217e-14, 0, 1, -0.015076, 0, -0.0217438)
-shape = SubResource("BoxShape3D_k1ixw")
+[editable path="Pyramid_Armature/Skeleton3D/North_Anchor/button_start"]
+[editable path="Pyramid_Armature/Skeleton3D/North_Anchor/button_exit"]

@@ -2,16 +2,20 @@ extends Node3D
 
 signal pressed
 var mesh_instance
+var static_body
 
 func _ready():
 	var mesh_children = find_children("*", "MeshInstance3D")
+	var sb_children = find_children("*", "StaticBody3D")
 	if(mesh_children.size() > 0):
 		mesh_instance = mesh_children.front()
+	if(sb_children.size() > 0):
+		static_body = sb_children.front()
 
 func _physics_process(delta: float) -> void:
 	var raycast : Dictionary = raycast_to_diegetic_ui()
 	if(raycast.keys().size() > 0):
-		if get_children().has(raycast.collider):
+		if static_body == raycast.collider:
 			mesh_instance.rotation.x = .1
 			if Input.is_action_just_pressed("ui_interact"):
 				pressed.emit()

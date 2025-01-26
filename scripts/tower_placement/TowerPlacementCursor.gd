@@ -1,4 +1,4 @@
-extends Node3D
+class_name TowerPlacementCursor extends Node3D
 
 @export var tower_prefab : PackedScene
 var is_placing = false
