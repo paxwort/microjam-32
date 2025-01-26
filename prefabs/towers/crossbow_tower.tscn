@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366065, -0.305916)
 [node name="WeaponFireComponent" type="Node3D" parent="." node_paths=PackedStringArray("projectile_spawn_point")]
 script = ExtResource("4_kuh3d")
 projectile = ExtResource("5_2cady")
-fire_rate = 2.0
+fire_rate = 1.0
 projectile_speed = 50.0
 projectile_spawn_point = NodePath("../tower_crossbow/Crossbow_Armature/Skeleton3D/projectile_spawn_point")
 

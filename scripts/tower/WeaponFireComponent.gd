@@ -16,10 +16,17 @@ func _process(delta: float) -> void:
 	if cooldown > 0:
 		cooldown-=delta
 
-func fire_weapon() -> void:
+func fire_weapon(target_pos: Vector3) -> void:
 	if(cooldown <= 0):
-		print("firing weapon...")
-		var new_projectile = projectile.instantiate()
 		cooldown = 1.0/fire_rate
+		
+		var new_projectile = projectile.instantiate()
+		new_projectile.global_position = projectile_spawn_point.global_position
+		new_projectile.look_at(target_pos, Vector3(0,1,0))
+		new_projectile.rotation.x = deg_to_rad(90)
+		new_projectile.scale = Vector3(0.05,0.05,0.05)
+		
+		
+		
 		get_tree().root.add_child(new_projectile)
-		new_projectile.global_transform.origin = projectile_spawn_point.global_transform.origin
+		

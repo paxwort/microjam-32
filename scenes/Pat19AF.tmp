@@ -37,25 +37,12 @@ enemyTypes = {
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, -0.7)
+projection = 1
 fov = 93.4555
 size = 7.42542
 
 [node name="CrossbowTower" parent="." instance=ExtResource("5_e6c75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25612, 0.334677, -0.1613)
-
-[node name="Skeleton3D" parent="CrossbowTower/tower_crossbow/Crossbow_Armature" index="0"]
-bones/1/rotation = Quaternion(4.02512e-08, -5.21404e-08, 0.284816, 0.958582)
-bones/2/rotation = Quaternion(-1.91904e-07, -8.00026e-08, 0.879215, -0.476424)
-bones/3/rotation = Quaternion(-0.793238, 1.18202e-08, -4.21993e-07, 0.608911)
-bones/4/rotation = Quaternion(6.70552e-08, -9.76996e-15, 3.63769e-14, 1)
-bones/5/rotation = Quaternion(1.88894e-08, 0.608912, 0.793238, 3.36323e-07)
-bones/6/rotation = Quaternion(2.98023e-08, 1.23745e-08, -1.13266e-14, 1)
-
-[node name="projectile_spawn_point" parent="CrossbowTower/tower_crossbow/Crossbow_Armature/Skeleton3D" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366065, -0.305916)
-
-[node name="WeaponFireComponent" parent="CrossbowTower" index="2"]
-fire_rate = 5.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.85512, 0)

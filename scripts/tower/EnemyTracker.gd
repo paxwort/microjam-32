@@ -11,7 +11,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if targeted:
-		$"../WeaponFireComponent".fire_weapon()
+		$"../WeaponFireComponent".fire_weapon(targeted.global_transform.origin)
 	
 func _on_body_entered(body : Node3D) -> void:
 	print("body entered")

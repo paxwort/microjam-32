@@ -2,12 +2,12 @@
 	"wave_1": [
 		{
 			"type": "enemy_1",
-			"count": 10,
-			"wait_time": 0.2
+			"count": 3,
+			"wait_time": 5
 		},
 		{
 			"type": "enemy_2",
-			"count": 5,
+			"count": 0,
 			"wait_time": 2
 		}
 	],
