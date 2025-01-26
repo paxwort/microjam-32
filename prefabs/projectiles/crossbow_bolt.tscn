@@ -9,6 +9,7 @@ height = 30.0
 height = 1.0
 
 [node name="CrossbowBolt" type="Node3D"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 script = ExtResource("1_1ovvc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

@@ -38,7 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366065, 0.0348253)
 script = ExtResource("4_kuh3d")
 Damage_Object_Prefab = ExtResource("5_2cady")
 fire_rate = 0.5
-projectile_speed = 50.0
+projectile_speed = 150.0
 projectile_spawn_point = NodePath("../tower_crossbow/Crossbow_Armature/Skeleton3D/projectile_spawn_point")
 
 [node name="PlayNamedAnimation" type="Node" parent="." node_paths=PackedStringArray("player")]
