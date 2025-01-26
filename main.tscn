@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=39 format=3 uid="uid://cjqln2kqwkwc4"]
 
 [ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
@@ -30,6 +30,10 @@
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementSelect.gd" id="21_l56ot"]
 [ext_resource type="Resource" uid="uid://cxuh6e33ntosr" path="res://prefabs/towers/spiketrap_tower_data.tres" id="23_a7ts0"]
 [ext_resource type="Resource" uid="uid://cfwf08lpd0xvp" path="res://prefabs/towers/crossbow_tower_data.tres" id="24_njx8m"]
+[ext_resource type="Script" path="res://scripts/audiovolume.gd" id="30_qxxui"]
+[ext_resource type="AudioStream" uid="uid://cle0psuv2ew1k" path="res://assets/sounds/739438__vrymaa__louxor-desert-caravan.mp3" id="31_ni50d"]
+[ext_resource type="AudioStream" uid="uid://xeejhj0nk3ol" path="res://assets/sounds/notify1.mp3" id="32_po6al"]
+[ext_resource type="AudioStream" uid="uid://b4xettvfaga7j" path="res://assets/sounds/notify2.mp3" id="33_n7jbv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ad2qx"]
 
@@ -399,17 +403,21 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VSlider" type="VSlider" parent="Control"]
 layout_mode = 0
-offset_right = 212.0
-offset_bottom = 40.0
+offset_left = 1117.0
+offset_right = 1152.0
+offset_bottom = 191.0
+value = 80.0
+script = ExtResource("30_qxxui")
 
-[node name="Tower Placing Indicator" type="RichTextLabel" parent="Control/VBoxContainer"]
-visible = false
-layout_mode = 2
-bbcode_enabled = true
-text = "[center]Tower Placement Active!"
-fit_content = true
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1059.0
+offset_top = 3.0
+offset_right = 1118.0
+offset_bottom = 26.0
+text = "Volume"
 
 [node name="pyramid" parent="." instance=ExtResource("13_tao2x")]
 
@@ -422,18 +430,32 @@ process_mode = 3
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.983904, -0.0876399, 0.155733, -0.178699, -0.482538, 0.857452, 0, -0.871479, -0.490432, 0, 0, 0)
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("31_ni50d")
+autoplay = true
+bus = &"Music"
+
+[node name="Notify1" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("32_po6al")
+volume_db = 2.0
+bus = &"SFX"
+
+[node name="Notify2" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("33_n7jbv")
+volume_db = 2.0
+bus = &"SFX"
+
 [connection signal="enabling" from="GameState/STATE_Menu" to="GameState/STATE_Menu/MenuVisibility" method="do_signal"]
 [connection signal="relay" from="GameState/STATE_Menu/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu" method="show"]
 [connection signal="relay" from="GameState/STATE_Menu/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu" method="hide"]
 [connection signal="relay" from="GameState/STATE_Menu/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu" method="hide"]
 [connection signal="enabling" from="GameState/STATE_Begin" to="GameState/STATE_Begin/play_pyramid_open" method="play"]
 [connection signal="enabling" from="GameState/STATE_Begin" to="Map/Maze" method="create_new_maze"]
+[connection signal="enabling" from="GameState/STATE_Begin" to="Notify1" method="play" binds= [0.0]]
 [connection signal="enabling" from="GameState/STATE_Resume" to="GameState/STATE_Resume/play_pyramid_open" method="play"]
 [connection signal="game_over" from="GameState/STATE_Game/GameOver Relay" to="GameState/STATE_Game/GoToEnd" method="go_to_state"]
 [connection signal="placing_started" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicators" method="show"]
-[connection signal="placing_started" from="GameState/STATE_Game/TowerPlacementCursor" to="Control/VBoxContainer/Tower Placing Indicator" method="show"]
 [connection signal="tower_placed" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicators" method="hide"]
-[connection signal="tower_placed" from="GameState/STATE_Game/TowerPlacementCursor" to="Control/VBoxContainer/Tower Placing Indicator" method="hide"]
 [connection signal="pressed" from="GameState/STATE_Game/shop/button_buy_spiketrap" to="GameState/STATE_Game/shop/button_buy_spiketrap/select_spiketrap" method="select"]
 [connection signal="selected" from="GameState/STATE_Game/shop/button_buy_spiketrap/select_spiketrap" to="GameState/STATE_Game/TowerPlacementCursor" method="start_placing"]
 [connection signal="pressed" from="GameState/STATE_Game/shop/button_buy_crossbow" to="GameState/STATE_Game/shop/button_buy_crossbow/select_crossbow" method="select"]
@@ -442,6 +464,7 @@ transform = Transform3D(0.983904, -0.0876399, 0.155733, -0.178699, -0.482538, 0.
 [connection signal="enabling" from="GameState/STATE_Game/RoundState/STATE_Play" to="GameState/STATE_Game/RoundState/STATE_Play/Trigger Wave" method="trigger_wave"]
 [connection signal="enabling" from="GameState/STATE_End" to="GameState/STATE_End/MenuVisibility" method="do_signal"]
 [connection signal="enabling" from="GameState/STATE_End" to="GameState/STATE_End/play_pyramid_close" method="play"]
+[connection signal="enabling" from="GameState/STATE_End" to="Notify2" method="play" binds= [0.0]]
 [connection signal="relay" from="GameState/STATE_End/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu" method="hide"]
 [connection signal="relay" from="GameState/STATE_End/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu" method="hide"]
 [connection signal="relay" from="GameState/STATE_End/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu" method="show"]
@@ -453,6 +476,7 @@ transform = Transform3D(0.983904, -0.0876399, 0.155733, -0.178699, -0.482538, 0.
 [connection signal="enabling" from="GameState/STATE_Reset" to="GameState/STATE_Reset/play_pyramid_close" method="play"]
 [connection signal="enabling" from="GameState/STATE_Exiting" to="GameState/STATE_Exiting/Exit" method="exit"]
 [connection signal="active_spawns_empty" from="Map/Maze/MazePath/Spawner" to="GameState/STATE_Game/RoundState/STATE_Play/GoToTowerSetup" method="go_to_state"]
+[connection signal="value_changed" from="Control/VSlider" to="Control/VSlider" method="_on_value_changed"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_start" to="GameState/STATE_Menu/GoToBegin" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_exit" to="GameState/STATE_Menu/GoToExit" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_resume" to="GameState/STATE_Paused/resume" method="pause_resume"]
