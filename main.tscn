@@ -114,6 +114,8 @@ default_velocity = 10.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0i1up")
 
+[node name="MenuViewport" type="SubViewport" parent="WorldEnvironment"]
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
