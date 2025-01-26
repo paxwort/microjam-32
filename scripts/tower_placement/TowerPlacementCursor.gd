@@ -32,10 +32,12 @@ func _physics_process(delta: float) -> void:
 func input_place_tower():
 	if Input.is_action_just_pressed("place_tower"):
 			var tower = tower_data.tower_prefab.instantiate()
-			%Map.add_child(tower)
-			tower.global_position = global_position
-			%Map.find_child("Maze").created.connect(tower.queue_free)
-			stop_placing()
+			if tower_data.cost < GameManager.Wallet:
+				%Map.add_child(tower)
+				tower.global_position = global_position
+				%Map.find_child("Maze").created.connect(tower.queue_free)
+				GameManager.spend_from_wallet(tower_data.cost)
+				stop_placing()
 
 func check_placement_valid(drop_position) -> bool:
 	var maze : Maze = %Map.find_child("Maze")
