@@ -19,6 +19,7 @@ func _kill_self(body: Node3D) -> void:
 
 
 func _on_damage_collision_area_body_entered(body: Node3D) -> void:
+	print("Ouch!")
 	if(body.get_parent() is DamageObject and body.get_parent().is_active):
 		Health.take_damage(1)
 		body.get_parent().explode()

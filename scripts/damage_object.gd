@@ -1,8 +1,8 @@
 class_name DamageObject
 extends Node3D
 
-var _speed:float = 1
-
+@export var _speed:float = 1
+@export var oneshot : bool = true
 var destruction_timer: Timer
 var is_active: bool = false
 @onready var collision_shape: CollisionShape3D = $RigidBody3D/CollisionShape3D
@@ -28,8 +28,10 @@ func set_speed(speed: float) -> void:
 	_speed=speed
 
 func _on_destruction_timer_timeout() -> void:
-	queue_free()
+	if(oneshot):
+		queue_free()
 	
 func explode():
-	is_active = false
-	queue_free()
+	if(oneshot):
+		is_active = false
+		queue_free()

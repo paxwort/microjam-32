@@ -15,7 +15,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -10)
 script = ExtResource("3_oud8r")
 
 [node name="MazePath" type="Path3D" parent="Maze"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="MazeMesher" type="GridMap" parent="Maze"]
 mesh_library = ExtResource("1_cgfyf")
