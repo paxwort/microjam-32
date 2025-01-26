@@ -1,7 +1,7 @@
 extends Node
-@export var tower : PackedScene
+@export var tower : TowerData
 signal selected
 
 func select():
-	%TowerPlacementCursor.tower_prefab = tower
+	%TowerPlacementCursor.tower_data = tower
 	selected.emit()

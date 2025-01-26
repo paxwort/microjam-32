@@ -18,6 +18,12 @@ shape = SubResource("CylinderShape3D_ng7t3")
 [node name="tower_crossbow" parent="." instance=ExtResource("1_fe5hx")]
 
 [node name="Skeleton3D" parent="tower_crossbow/Crossbow_Armature" index="0" node_paths=PackedStringArray("tracker")]
+bones/1/rotation = Quaternion(4.02512e-08, -5.21404e-08, 0.284816, 0.958582)
+bones/2/rotation = Quaternion(-1.91904e-07, -8.00026e-08, 0.879215, -0.476424)
+bones/3/rotation = Quaternion(-0.793238, 1.18202e-08, -4.21993e-07, 0.608911)
+bones/4/rotation = Quaternion(6.70552e-08, -9.76996e-15, 3.63769e-14, 1)
+bones/5/rotation = Quaternion(1.88894e-08, 0.608912, 0.793238, 3.36323e-07)
+bones/6/rotation = Quaternion(2.98023e-08, 1.23745e-08, -1.13266e-14, 1)
 script = ExtResource("3_21kcj")
 tracker = NodePath("../../../EnemyTracker")
 
