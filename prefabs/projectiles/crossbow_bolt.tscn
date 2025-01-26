@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfbjgk7ylcrqq"]
 
-[ext_resource type="Script" path="res://prefabs/projectiles/projectile.gd" id="1_1ovvc"]
+[ext_resource type="Script" path="res://prefabs/projectiles/damage_object.gd" id="1_1ovvc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u3qir"]
 height = 30.0
