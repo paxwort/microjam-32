@@ -102,10 +102,6 @@ script = ExtResource("7_m0nf8")
 target_state = "STATE_Paused"
 wait_for_frame = true
 
-[node name="GoToReset" type="Node" parent="GameState/STATE_Game"]
-script = ExtResource("3_cdlvk")
-target_state = "STATE_Reset"
-
 [node name="GameOver Relay" type="Node" parent="GameState/STATE_Game"]
 script = ExtResource("8_biu1t")
 
@@ -280,6 +276,15 @@ script = ExtResource("19_5alqc")
 process_mode = 4
 script = ExtResource("2_jjydy")
 
+[node name="GoToReset" type="Node" parent="GameState/STATE_End"]
+script = ExtResource("3_cdlvk")
+target_state = "STATE_Reset"
+
+[node name="GoToExit2" type="Node" parent="GameState/STATE_End"]
+script = ExtResource("3_cdlvk")
+target_state = "STATE_Exiting"
+wait_for_frame = true
+
 [node name="MenuVisibility" type="Node" parent="GameState/STATE_End"]
 script = ExtResource("3_flvjl")
 
@@ -407,6 +412,7 @@ process_mode = 3
 [connection signal="selected" from="GameState/STATE_Game/shop/button_buy_crossbow/select_crossbow" to="GameState/STATE_Game/TowerPlacementCursor" method="start_placing"]
 [connection signal="pressed" from="GameState/STATE_Game/RoundState/STATE_Towersetup/Button_Next_Round" to="GameState/STATE_Game/RoundState/STATE_Towersetup/GoToPlay" method="go_to_state"]
 [connection signal="enabling" from="GameState/STATE_Game/RoundState/STATE_Play" to="GameState/STATE_Game/RoundState/STATE_Play/Trigger Wave" method="trigger_wave"]
+[connection signal="enabling" from="GameState/STATE_End" to="GameState/STATE_End/MenuVisibility" method="do_signal"]
 [connection signal="enabling" from="GameState/STATE_End" to="GameState/STATE_End/play_pyramid_close" method="play"]
 [connection signal="relay" from="GameState/STATE_End/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu" method="hide"]
 [connection signal="relay" from="GameState/STATE_End/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu" method="hide"]
@@ -423,6 +429,8 @@ process_mode = 3
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_exit" to="GameState/STATE_Menu/GoToExit" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_resume" to="GameState/STATE_Paused/resume" method="pause_resume"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_exit" to="GameState/STATE_Paused/GoToExit" method="go_to_state"]
+[connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu/button_restart" to="GameState/STATE_End/GoToReset" method="go_to_state"]
+[connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu/button_exit" to="GameState/STATE_End/GoToExit2" method="go_to_state"]
 
 [editable path="GameState/STATE_Game/shop/button_buy_spiketrap"]
 [editable path="GameState/STATE_Game/shop/button_buy_crossbow"]
