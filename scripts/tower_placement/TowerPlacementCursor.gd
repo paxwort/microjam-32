@@ -42,7 +42,6 @@ func input_place_tower():
 func check_placement_valid(drop_position) -> bool:
 	var maze : Maze = %Map.find_child("Maze")
 	var coord = maze.world_to_maze_coordinate(drop_position)
-	print(coord)
 	var cell_type = maze.get_cell(coord.x, coord.y)
 	if (tower_data.can_place_path
 			and (cell_type == 1)):
