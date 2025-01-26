@@ -30,7 +30,7 @@ script = ExtResource("3_21kcj")
 tracker = NodePath("../../../EnemyTracker")
 
 [node name="projectile_spawn_point" type="Node3D" parent="tower_crossbow/Crossbow_Armature/Skeleton3D" index="4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366065, -0.305916)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366065, 0.0348253)
 
 [node name="WeaponFireComponent" type="Node3D" parent="." node_paths=PackedStringArray("projectile_spawn_point")]
 script = ExtResource("4_kuh3d")

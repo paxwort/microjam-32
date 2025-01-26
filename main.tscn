@@ -175,7 +175,6 @@ text = "Place a tower"
 [node name="Begin Round button" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 text = "Begin Round"
-script = ExtResource("12_13xel")
 
 [node name="Tower Placing Indicator" type="RichTextLabel" parent="Control/VBoxContainer"]
 visible = false
