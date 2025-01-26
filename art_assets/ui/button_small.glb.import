@@ -36,7 +36,7 @@ _subresources={
 "PATH:Button_Small": {
 "generate/physics": true,
 "physics/layer": 512,
-"physics/shape_type": 0
+"physics/shape_type": 1
 }
 }
 }
