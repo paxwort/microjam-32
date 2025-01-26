@@ -1,4 +1,4 @@
-class_name damage_object
+class_name DamageObject
 extends Node3D
 
 var _speed:float = 1

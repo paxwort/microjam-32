@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://out2isyt6elw"]
+
+[ext_resource type="MeshLibrary" uid="uid://c3d5okgea5o32" path="res://assets/KenneyNL_TowerDefence/tiles.tres" id="1_jjsu2"]
+[ext_resource type="Script" path="res://scripts/pathfinding_test.gd" id="1_qxhd7"]
+[ext_resource type="PackedScene" uid="uid://c28v1lcjn3ks4" path="res://prefabs/spawner.tscn" id="2_5h3f7"]
+[ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemies/enemy_1.tscn" id="3_7aebo"]
+[ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemies/enemy_2.tscn" id="4_a5sgv"]
+[ext_resource type="PackedScene" uid="uid://dbxn1et2iualn" path="res://prefabs/enemies/enemy_croc.tscn" id="5_8wm8r"]
+[ext_resource type="PackedScene" uid="uid://caue7rc1m70vr" path="res://prefabs/towers/crossbow_tower.tscn" id="5_e6c75"]
+[ext_resource type="PackedScene" uid="uid://bdcit6wslybiv" path="res://prefabs/enemies/enemy_indy.tscn" id="6_f5iqr"]
+[ext_resource type="PackedScene" uid="uid://6838mpvlhuxx" path="res://prefabs/enemies/enemy_roman.tscn" id="7_84hrt"]
+
+[sub_resource type="Curve3D" id="Curve3D_bd0po"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -3.5, 0, 0, 0, 0, 0, 0, 0, 0, -4, 0, -0.5, 0, 0, 0, 0, 0, 0, -3.5, 0, -1, 0, 0, 0, 0, 0, 0, -0.5, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1.5, 0, 0, 0, 0, 0, 0, 0, 0, -2.5, 0, 0, 0, 0, 0, 0, -0.5, 0, -3, 0, 0, 0, 0, 0, 0, -3.5, 0.6, -3, 0, 0, 0, 0, 0, 0, -4, 0.6, -3),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
+[node name="PathfindingTest" type="Node3D"]
+script = ExtResource("1_qxhd7")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_jjsu2")
+cell_size = Vector3(1, 0.2, 1)
+data = {
+"cells": PackedInt32Array(0, 0, 1441820, 65535, 0, 1441820, 65534, 0, 1441820, 1, 0, 1441813, 65533, 0, 1048580, 65533, 65535, 4, 65534, 65535, 1441820, 65535, 65535, 1441820, 0, 65535, 1441820, 1, 65535, 655364, 1, 1, 1048595, 0, 1, 1048595, 65535, 1, 1048595, 65534, 1, 1048595, 65533, 1, 1048595, 1, 65534, 28, 1, 65533, 1441796, 0, 65533, 1048603, 131071, 65533, 1048603, 196606, 65533, 1048603, 131070, 65533, 1048613, 65535, 65533, 1048613, 65534, 65533, 1048613, 65533, 65533, 37, 131069, 65533, 37, 196605, 65533, 37, 262141, 65533, 1048585, 0, 65534, 1048583, 65535, 65534, 1048583, 65534, 65534, 1048583, 65533, 65534, 1048583)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Path3D" type="Path3D" parent="GridMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.25, 0.5)
+curve = SubResource("Curve3D_bd0po")
+
+[node name="Spawner" parent="GridMap/Path3D" instance=ExtResource("2_5h3f7")]
+enemyTypes = {
+"enemy_1": ExtResource("3_7aebo"),
+"enemy_2": ExtResource("4_a5sgv"),
+"enemy_croc": ExtResource("5_8wm8r"),
+"enemy_indy": ExtResource("6_f5iqr"),
+"enemy_roman": ExtResource("7_84hrt")
+}
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3, -0.7)
+fov = 93.4555
+size = 7.42542
+
+[node name="CrossbowTower" parent="." instance=ExtResource("5_e6c75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25612, 0.334677, -0.1613)
+
+[node name="Skeleton3D" parent="CrossbowTower/tower_crossbow/Crossbow_Armature" index="0"]
+bones/3/rotation = Quaternion(-0.793238, 1.18203e-08, -4.21993e-07, 0.608911)
+bones/4/rotation = Quaternion(6.70552e-08, -1.33227e-14, 3.95047e-14, 1)
+bones/6/rotation = Quaternion(2.98023e-08, 1.23745e-08, -1.14365e-14, 1)
+
+[node name="projectile_spawn_point" parent="CrossbowTower/tower_crossbow/Crossbow_Armature/Skeleton3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366065, -0.210481)
+
+[node name="WeaponFireComponent" parent="CrossbowTower" index="2"]
+fire_rate = 0.5
+projectile_speed = 5.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.85512, 0)
+
+[editable path="CrossbowTower"]
+[editable path="CrossbowTower/tower_crossbow"]
