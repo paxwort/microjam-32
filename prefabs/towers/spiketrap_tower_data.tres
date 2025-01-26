@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="TowerData" load_steps=3 format=3 uid="uid://cxuh6e33ntosr"]
+
+[ext_resource type="Script" path="res://scripts/tower/TowerData.gd" id="1_fnt3l"]
+[ext_resource type="PackedScene" uid="uid://cvsrsedwtcsct" path="res://prefabs/towers/spiketrap_tower.tscn" id="2_2ql4u"]
+
+[resource]
+script = ExtResource("1_fnt3l")
+tower_prefab = ExtResource("2_2ql4u")
+cost = 100
+can_place_path = true
+can_place_wall = false
+can_place_neighbouring_path = false

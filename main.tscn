@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=29 format=3 uid="uid://cjqln2kqwkwc4"]
 
 [ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
@@ -8,8 +8,9 @@
 [ext_resource type="Script" path="res://scripts/play_named_animation.gd" id="3_utl4f"]
 [ext_resource type="Script" path="res://scripts/state/TransitionAfter.gd" id="4_00bpe"]
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementCursor.gd" id="5_ffcvi"]
-[ext_resource type="PackedScene" uid="uid://dpldgh6x8hyfh" path="res://prefabs/towers/test_placing_tower.tscn" id="5_rtwpd"]
 [ext_resource type="Script" path="res://scripts/Exit.gd" id="6_1nd5i"]
+[ext_resource type="Material" uid="uid://chj0byxde1hmk" path="res://assets/materials/indicator_invalid.tres" id="7_813af"]
+[ext_resource type="Material" uid="uid://jdrp6rhfkskx" path="res://assets/materials/indicator_valid.tres" id="7_nbnsr"]
 [ext_resource type="PackedScene" uid="uid://c28v1lcjn3ks4" path="res://prefabs/spawner.tscn" id="8_ips6i"]
 [ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemies/enemy_1.tscn" id="9_jyc2j"]
 [ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemies/enemy_2.tscn" id="10_bt8ur"]
@@ -21,8 +22,8 @@
 [ext_resource type="Script" path="res://scripts/ui/DiegeticButton.gd" id="19_d2pne"]
 [ext_resource type="PackedScene" uid="uid://bmrysnx04toau" path="res://art_assets/ui/button_square.glb" id="19_iw33e"]
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementSelect.gd" id="21_l56ot"]
-[ext_resource type="PackedScene" uid="uid://cvsrsedwtcsct" path="res://prefabs/towers/spiketrap_tower.tscn" id="22_7kv6b"]
-[ext_resource type="PackedScene" uid="uid://caue7rc1m70vr" path="res://prefabs/towers/crossbow_tower.tscn" id="23_acc7b"]
+[ext_resource type="Resource" uid="uid://cxuh6e33ntosr" path="res://prefabs/towers/spiketrap_tower_data.tres" id="23_a7ts0"]
+[ext_resource type="Resource" uid="uid://cfwf08lpd0xvp" path="res://prefabs/towers/crossbow_tower_data.tres" id="24_njx8m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ad2qx"]
 
@@ -84,11 +85,21 @@ target_state = "STATE_End"
 [node name="TowerPlacementCursor" type="Node3D" parent="GameState/STATE_Game"]
 unique_name_in_owner = true
 script = ExtResource("5_ffcvi")
-tower_prefab = ExtResource("5_rtwpd")
 
-[node name="Indicator" type="MeshInstance3D" parent="GameState/STATE_Game/TowerPlacementCursor"]
-visible = false
+[node name="Indicators" type="Node3D" parent="GameState/STATE_Game/TowerPlacementCursor"]
+
+[node name="Indicator_Valid" type="MeshInstance3D" parent="GameState/STATE_Game/TowerPlacementCursor/Indicators"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+material_override = ExtResource("7_nbnsr")
 mesh = SubResource("BoxMesh_ad2qx")
+skeleton = NodePath("../..")
+
+[node name="Indicator_Invalid" type="MeshInstance3D" parent="GameState/STATE_Game/TowerPlacementCursor/Indicators"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+visible = false
+material_override = ExtResource("7_813af")
+mesh = SubResource("BoxMesh_ad2qx")
+skeleton = NodePath("../..")
 
 [node name="STATE_End" type="Node" parent="GameState"]
 process_mode = 4
@@ -185,6 +196,9 @@ fit_content = true
 
 [node name="pyramid" parent="." instance=ExtResource("13_tao2x")]
 
+[node name="North_Anchor" parent="pyramid/Pyramid_Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.288751, 0, 0, 0, 0.288751, 0, 0, 0, 0.288751, 0, 0, -10.2578)
+
 [node name="shop" type="Node3D" parent="."]
 
 [node name="button_buy_spiketrap" parent="shop" instance=ExtResource("19_iw33e")]
@@ -212,7 +226,7 @@ outline_size = 24
 
 [node name="select_spiketrap" type="Node" parent="shop/button_buy_spiketrap"]
 script = ExtResource("21_l56ot")
-tower = ExtResource("22_7kv6b")
+tower = ExtResource("23_a7ts0")
 
 [node name="button_buy_crossbow" parent="shop" instance=ExtResource("19_iw33e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.8256, 0.489027, -3.54245)
@@ -239,13 +253,13 @@ outline_size = 24
 
 [node name="select_crossbow" type="Node" parent="shop/button_buy_crossbow"]
 script = ExtResource("21_l56ot")
-tower = ExtResource("23_acc7b")
+tower = ExtResource("24_njx8m")
 
 [connection signal="enabling" from="GameState/STATE_Begin" to="GameState/STATE_Begin/play_pyramid_open" method="play"]
 [connection signal="enabling" from="GameState/STATE_Begin" to="Map/Maze" method="create_new_maze"]
-[connection signal="placing_started" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicator" method="show"]
+[connection signal="placing_started" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicators" method="show"]
 [connection signal="placing_started" from="GameState/STATE_Game/TowerPlacementCursor" to="Control/VBoxContainer/Tower Placing Indicator" method="show"]
-[connection signal="tower_placed" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicator" method="hide"]
+[connection signal="tower_placed" from="GameState/STATE_Game/TowerPlacementCursor" to="GameState/STATE_Game/TowerPlacementCursor/Indicators" method="hide"]
 [connection signal="tower_placed" from="GameState/STATE_Game/TowerPlacementCursor" to="Control/VBoxContainer/Tower Placing Indicator" method="hide"]
 [connection signal="enabling" from="GameState/STATE_End" to="GameState/STATE_End/play_pyramid_close" method="play"]
 [connection signal="enabling" from="GameState/STATE_Reset" to="GameState/STATE_Reset/play_pyramid_close" method="play"]
