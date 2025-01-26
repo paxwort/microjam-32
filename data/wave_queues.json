@@ -2,13 +2,8 @@
 	"wave_1": [
 		{
 			"type": "enemy_croc",
-			"count": 10,
-			"wait_time": 1
-		},
-		{
-			"type": "enemy_indy",
 			"count": 5,
-			"wait_time": 2
+			"wait_time": 1
 		}
 	],
 	"wave_2": [

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=32 format=3 uid="uid://cjqln2kqwkwc4"]
 
 [ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dbxn1et2iualn" path="res://prefabs/enemies/enemy_croc.tscn" id="11_o3g5j"]
 [ext_resource type="PackedScene" uid="uid://cht5gqlgvhwmc" path="res://scenes/pyramid.tscn" id="13_tao2x"]
 [ext_resource type="PackedScene" uid="uid://6838mpvlhuxx" path="res://prefabs/enemies/enemy_roman.tscn" id="13_yqiol"]
-[ext_resource type="Texture2D" uid="uid://dtoiitdxafky8" path="res://art_assets/ui/button_square_Ucupaint Material.png" id="17_awbgd"]
 [ext_resource type="Script" path="res://scripts/ui/HealthDisplay.gd" id="17_qjf4m"]
 [ext_resource type="FontFile" uid="uid://kuabpcxa6ck4" path="res://assets/fonts/Zatanna Misdirection.otf" id="18_odmy1"]
 [ext_resource type="Script" path="res://scripts/ui/DiegeticButton.gd" id="19_d2pne"]
@@ -30,52 +29,6 @@
 [ext_resource type="Resource" path="res://prefabs/towers/crossbow_tower_data.tres" id="24_njx8m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ad2qx"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b7qny"]
-resource_name = "Material.001"
-cull_mode = 2
-albedo_texture = ExtResource("17_awbgd")
-roughness = 0.5
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_l6yq8"]
-_surfaces = [{
-"aabb": AABB(-1.42304, -0.545597, -1.34314, 2.84608, 0.961107, 2.68628),
-"format": 34896613377,
-"index_count": 90,
-"index_data": PackedByteArray("CwACAA0ACwAAAAIAEAAOABIAEAAKAA4AEQADAAcAEQAMAAMABgATAAgABgAPABMAAgAEAAMABwAJAAgADAAOAA0AEQATABIAAAAEAAIAAAABAAQAAwAJAAcAAwAEAAkACAAFAAYACAAJAAUABwATABEABwAIABMAEgAPABAAEgATAA8AEQAOAAwAEQASAA4ADQAKAAsADQAOAAoADAACAAMADAANAAIAAQAJAAQAAQAFAAkA"),
-"lods": [0.088196, PackedByteArray("CwACAAwACwAAAAIADAAKAAsADAAOAAoAEAAOABMAEAAKAA4AEwAPABAABgAPABMABgATAAgAEwADAAcAAwAEAAcAEwAMAAMAEwAOAAwABwAIABMAAgAEAAMAAAAEAAIAAAABAAQACAAFAAYACAAHAAUAAQAFAAcAAQAHAAQADAACAAMA")],
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 20,
-"vertex_data": PackedByteArray("/AYAAP//AAAAAAAAmPgAAPwGT+v//wAA/Ab//5j4AAAAAE/rmPgAAAAAAABmBwAA/AYAAAAAAAD8Bv//ZgcAAPwGT+sAAAAAAABP62YHAAD//wAAmPgAAAL5AAD//wAAAvn//5j4AAAC+U/r//8AAP//T+uY+AAAAvkAAAAAAAD//wAAZgcAAAL5//9mBwAA//9P62YHAAAC+U/rAAAAAA==")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_blnw8"]
-resource_name = "button_square_Cube_001"
-_surfaces = [{
-"aabb": AABB(-1.42304, -0.545597, -1.34314, 2.84608, 0.961107, 2.68628),
-"attribute_data": PackedByteArray("Q+/Ti++7Zb7YvWW+/39goqT+04uPmEvQ77ueze+7ns3pmUvQ6ZlL0OS89c7pmUvQ2L2ezdi9ns3pmfXOYI9gov9/ioP/f4qDj5j1zv9/pYH4xUvQ+MVL0LqQmIL4xUvQ8Kf1zlLHS9Bgj6WBYI+lgWCPioNgj4qD+MX1zmCPioND74Cuj5hyjUPvm6xD75us6Zmo/umZqP7//42t6Zmo/qT+m6yPmKj+pP6brKT+m6yk/oCupP6ArumZ///wp3KNj5gsro+YLK6PmEisj5hIrPjFqP74xaj+Sqk6rfjFqP7wp0is8KdIrPjF///wp0is8KcsrlLHqP7wpyyu8KcsrumZS9DYvZ7N/3+Kg/jFS9C6kJiCYI+lgUPvm6zpmaj+//+NraT+gK6PmCyuj5hIrPCnLK5Sx6j+Useo/g=="),
-"format": 34896613399,
-"index_count": 90,
-"index_data": PackedByteArray("IgAEACgAIgAAAAQAMwAvADsAMwAhAC8ANQAJABUANQAlAAkAEgA8ABgAEgAwADwABgAMAAoAFgAcABoAJgAsACoANgA+ADgAAQANAAcAAQACAA0ACwAeABcACwAOAB4AGwAQABMAGwAdABAAFAA9ADQAFAAZAD0AOQAxADIAOQA/ADEANwAuACcANwA6AC4AKwAgACMAKwAtACAAJAAFAAgAJAApAAUAAwAfAA8AAwARAB8A"),
-"lods": [0.088196, PackedByteArray("RgAEAEgARgAAAAQASAAgAEYASABJACAASwAvAEwASwAhAC8ATABKAEsAEgBKADwAEgA8ABgATQBAAEMAQAAOAEMATQBHAEAATgAuAEcAFAAZAE0ABgBBAAoAAQBBAAYAAQACAEEARQBCABMARQBEAEIAAwBCAEQAAwBEAA8AJAAFAAgA")],
-"material": SubResource("StandardMaterial3D_b7qny"),
-"name": "Material.001",
-"primitive": 3,
-"uv_scale": Vector4(1.97946, 2, 0, 0),
-"vertex_count": 79,
-"vertex_data": PackedByteArray("/AYAAP///7/8BgAA/////wAAAACY+P//AAAAAJj4VNX8Bk/r////v/wGT+v///zF/AZP6///h/b8Bk/r//////wG//+Y+PzF/Ab//5j4VNX8Bv//mPiH9vwG//+Y+KrpAABP65j4h/YAAE/rmPj//wAAT+uY+KrpAABP65j4VNUAAAAAZgeq6QAAAABmB1TV/AYAAAAA///8BgAAAACq6fwG//9mB6rp/Ab//2YHVNX8Bv//Zgdu2fwG//9mB6rp/AZP6wAA///8Bk/rAACq6fwGT+sAAG7Z/AZP6wAAqukAAE/rZgdu2QAAT+tmB6rpAABP62YHqukAAE/rZgdU1f//AACY+PzF//8AAJj4VNUC+QAA////vwL5AAD///zFAvn//5j4/MUC+f//mPhU1QL5//+Y+HPRAvn//5j4/MUC+U/r////vwL5T+v///zFAvlP6///c9EC+U/r///8xf//T+uY+HPR//9P65j4/MX//0/rmPj8xf//T+uY+FTVAvkAAAAA//8C+QAAAACq6f//AABmB6rp//8AAGYHVNUC+f//Zgeq6QL5//9mB1TVAvn//2YHGvsC+f//Zgf8xf//T+tmBxr7//9P62YHqun//0/rZgf8xf//T+tmB1TVAvlP6wAA//8C+U/rAACq6QL5T+sAABr7AvlP6wAAqun8Bv//mPhf2wAAT+uY+Nn8AAAAAGYHtuL8Bv//Zgdk3vwG//9mB2nK/AZP6wAAy9wC+QAA//+owAL5//+Y+FLNAvn//5j4B8///0/rmPiXzgL5AAAAALj0//8AAGYHk9sC+U/rAAAZ3wL5T+sAAJPbAvlP6wAArMj/////glr/f4Ja/39U1VTV///////i/xyC6Jweglr/f//i/xxU1aoqguicHgjqBDWC6Jweglr/fwjqBDVU1VTV+sr6ylTVVNX/v/+/+sr6yvrKBDVU1aoq+srmugjqBDX/v/+/+soENfrK5rr6yvrK+srmuvrK+soI6gQ1VNVU1f8c/xyqKqoq//////8c/xz/4v8cVNWqKs0vSwb9uf8c///////i/xzNL0sG/xz/HM0vSwb/HP8c/bn/HKoqqir/v/+/BDUENQQ1BDWqKqoq+soENVTVqioENa4o/bn/HAQ1rigENQQ1/bn/HKoqqir/v/+/+soENQQ1rigENQQ1b+7cLm33+yJOzizOUthGRR/DKdZItvDQFA0UDcLUeRYBJrIUqioMGzU6NTorLisu+C/4L/7R8T4guv8/")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_l6yq8")
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k3uw6"]
-points = PackedVector3Array(-1.44563, -0.568088, -1.3201, -0.0348027, 0.401665, 1.27932, -1.32476, 0.401665, 1.27932, 0, -0.568088, 1.34456, -0.0258904, 0.407791, -1.27319, 0, -0.568088, -1.36546, -1.44563, -0.568088, 1.2992, -1.40556, 0.355323, -1.2475, -1.40556, 0.355323, 1.2266, -1.36282, 0.398066, -1.24756, -1.36767, 0.358577, -1.30011, -1.40035, -0.568088, 1.34456, -1.40035, -0.568088, -1.36546, -0.0259416, 0.36415, -1.31683)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_18mgh"]
-points = PackedVector3Array(0, -0.568088, -1.36546, 1.40556, 0.355323, 1.2266, 1.44563, -0.568088, 1.2992, 0, -0.568088, 1.34456, 0.0258904, 0.407791, -1.27319, 1.44563, -0.568088, -1.3201, 0.0348027, 0.401665, 1.27932, 1.36282, 0.398066, -1.24756, 1.32476, 0.401665, 1.27932, 1.36767, 0.358577, -1.30011, 1.40556, 0.355323, -1.2475, 1.40035, -0.568088, 1.34456, 1.40035, -0.568088, -1.36546, 0.0259416, 0.36415, -1.31683)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6b1ja"]
 
@@ -233,10 +186,10 @@ tower = ExtResource("24_njx8m")
 [node name="stats" type="Node3D" parent="GameState/STATE_Game"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8137, 0, 0)
 
-[node name="button_buy_spiketrap2" parent="GameState/STATE_Game/stats" instance=ExtResource("19_iw33e")]
+[node name="Health_Score" parent="GameState/STATE_Game/stats" instance=ExtResource("19_iw33e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639267, 0.489027, 0)
 
-[node name="Label3D" type="Label3D" parent="GameState/STATE_Game/stats/button_buy_spiketrap2/Button_Square" index="1"]
+[node name="Label3D" type="Label3D" parent="GameState/STATE_Game/stats/Health_Score/Button_Square" index="1"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0.045249, 0.415932, 0.894457)
 modulate = Color(0.906795, 0.38005, 0.567555, 1)
 outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
@@ -246,7 +199,7 @@ font = ExtResource("18_odmy1")
 font_size = 140
 outline_size = 24
 
-[node name="HealthTracker" type="Label3D" parent="GameState/STATE_Game/stats/button_buy_spiketrap2/Button_Square" index="2"]
+[node name="HealthTracker" type="Label3D" parent="GameState/STATE_Game/stats/Health_Score/Button_Square" index="2"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0.045249, 0.415932, 0.279041)
 modulate = Color(0.837846, 0.760556, 0.786287, 1)
 outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
@@ -257,22 +210,11 @@ font_size = 250
 outline_size = 24
 script = ExtResource("17_qjf4m")
 
-[node name="Button_Square2" type="MeshInstance3D" parent="GameState/STATE_Game/stats/button_buy_spiketrap2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.81834)
-mesh = SubResource("ArrayMesh_blnw8")
-skeleton = NodePath("")
+[node name="Health_Score2" parent="GameState/STATE_Game/stats" instance=ExtResource("19_iw33e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0639267, 0.489027, -3.79727)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="GameState/STATE_Game/stats/button_buy_spiketrap2/Button_Square2"]
-collision_layer = 512
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameState/STATE_Game/stats/button_buy_spiketrap2/Button_Square2/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_k3uw6")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="GameState/STATE_Game/stats/button_buy_spiketrap2/Button_Square2/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_18mgh")
-
-[node name="Label3D" type="Label3D" parent="GameState/STATE_Game/stats/button_buy_spiketrap2/Button_Square2"]
-transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0.045249, 0.415932, 0.894457)
+[node name="Label3D" type="Label3D" parent="GameState/STATE_Game/stats/Health_Score2"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0.045249, 0.415932, 0.87339)
 modulate = Color(0.559196, 0.571713, 0.751938, 1)
 outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
 text = "Score
@@ -281,8 +223,8 @@ font = ExtResource("18_odmy1")
 font_size = 140
 outline_size = 24
 
-[node name="ScoreTracker" type="Label3D" parent="GameState/STATE_Game/stats/button_buy_spiketrap2/Button_Square2"]
-transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0.045249, 0.415932, 0.279041)
+[node name="ScoreTracker" type="Label3D" parent="GameState/STATE_Game/stats/Health_Score2"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0.045249, 0.415932, 0.257974)
 modulate = Color(0.837846, 0.760556, 0.786287, 1)
 outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
 text = "
@@ -291,6 +233,40 @@ font = ExtResource("18_odmy1")
 font_size = 200
 outline_size = 24
 script = ExtResource("19_dibw2")
+
+[node name="RoundState" type="Node" parent="GameState/STATE_Game"]
+script = ExtResource("1_c7j07")
+active_state_key = "STATE_Towersetup"
+
+[node name="STATE_Towersetup" type="Node" parent="GameState/STATE_Game/RoundState"]
+script = ExtResource("2_jjydy")
+
+[node name="GoToPlay" type="Node" parent="GameState/STATE_Game/RoundState/STATE_Towersetup"]
+script = ExtResource("3_cdlvk")
+target_state = "STATE_Play"
+
+[node name="Button_Next_Round" parent="GameState/STATE_Game/RoundState/STATE_Towersetup" instance=ExtResource("19_iw33e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8776, 0.489027, 3.69848)
+script = ExtResource("19_d2pne")
+
+[node name="Label3D" type="Label3D" parent="GameState/STATE_Game/RoundState/STATE_Towersetup/Button_Next_Round/Button_Square" index="1"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0.045249, 0.415932, -0.0407488)
+modulate = Color(0.26946, 0.698572, 0, 1)
+outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
+text = "NEXT
+ROUND
+"
+font = ExtResource("18_odmy1")
+font_size = 140
+outline_size = 24
+
+[node name="STATE_Play" type="Node" parent="GameState/STATE_Game/RoundState"]
+process_mode = 4
+script = ExtResource("2_jjydy")
+
+[node name="GoToTowerSetup" type="Node" parent="GameState/STATE_Game/RoundState/STATE_Play"]
+script = ExtResource("3_cdlvk")
+target_state = "STATE_Towersetup"
 
 [node name="STATE_End" type="Node" parent="GameState"]
 process_mode = 4
@@ -387,19 +363,6 @@ layout_mode = 0
 offset_right = 212.0
 offset_bottom = 40.0
 
-[node name="New Path Button" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-text = "Give me a new path
-"
-
-[node name="Place Tower button" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-text = "Place a tower"
-
-[node name="Begin Round button" type="Button" parent="Control/VBoxContainer"]
-layout_mode = 2
-text = "Begin Round"
-
 [node name="Tower Placing Indicator" type="RichTextLabel" parent="Control/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -427,6 +390,8 @@ process_mode = 3
 [connection signal="selected" from="GameState/STATE_Game/shop/button_buy_spiketrap/select_spiketrap" to="GameState/STATE_Game/TowerPlacementCursor" method="start_placing"]
 [connection signal="pressed" from="GameState/STATE_Game/shop/button_buy_crossbow" to="GameState/STATE_Game/shop/button_buy_crossbow/select_crossbow" method="select"]
 [connection signal="selected" from="GameState/STATE_Game/shop/button_buy_crossbow/select_crossbow" to="GameState/STATE_Game/TowerPlacementCursor" method="start_placing"]
+[connection signal="pressed" from="GameState/STATE_Game/RoundState/STATE_Towersetup/Button_Next_Round" to="GameState/STATE_Game/RoundState/STATE_Towersetup/GoToPlay" method="go_to_state"]
+[connection signal="enabling" from="GameState/STATE_Game/RoundState/STATE_Play" to="Map/Maze/MazePath/Spawner" method="_start_round"]
 [connection signal="enabling" from="GameState/STATE_End" to="GameState/STATE_End/play_pyramid_close" method="play"]
 [connection signal="enabling" from="GameState/STATE_Paused" to="GameState/STATE_End/play_pyramid_close" method="play"]
 [connection signal="enabling" from="GameState/STATE_Paused" to="GameState/STATE_Paused/MenuVisibility" method="do_signal"]
@@ -435,9 +400,7 @@ process_mode = 3
 [connection signal="relay" from="GameState/STATE_Paused/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu" method="hide"]
 [connection signal="enabling" from="GameState/STATE_Reset" to="GameState/STATE_Reset/play_pyramid_close" method="play"]
 [connection signal="enabling" from="GameState/STATE_Exiting" to="GameState/STATE_Exiting/Exit" method="exit"]
-[connection signal="pressed" from="Control/VBoxContainer/New Path Button" to="GameState/STATE_Game/GoToReset" method="go_to_state"]
-[connection signal="pressed" from="Control/VBoxContainer/Place Tower button" to="GameState/STATE_Game/TowerPlacementCursor" method="start_placing"]
-[connection signal="pressed" from="Control/VBoxContainer/Begin Round button" to="Map/Maze/MazePath/Spawner" method="_start_round"]
+[connection signal="active_spawns_empty" from="Map/Maze/MazePath/Spawner" to="GameState/STATE_Game/RoundState/STATE_Play/GoToTowerSetup" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_start" to="GameState/STATE_Menu/GoToBegin" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_exit" to="GameState/STATE_Menu/GoToExit" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_resume" to="GameState/STATE_Paused/resume" method="pause_resume"]
@@ -445,7 +408,9 @@ process_mode = 3
 
 [editable path="GameState/STATE_Game/shop/button_buy_spiketrap"]
 [editable path="GameState/STATE_Game/shop/button_buy_crossbow"]
-[editable path="GameState/STATE_Game/stats/button_buy_spiketrap2"]
+[editable path="GameState/STATE_Game/stats/Health_Score"]
+[editable path="GameState/STATE_Game/stats/Health_Score2"]
+[editable path="GameState/STATE_Game/RoundState/STATE_Towersetup/Button_Next_Round"]
 [editable path="Map"]
 [editable path="pyramid"]
 [editable path="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_start"]
