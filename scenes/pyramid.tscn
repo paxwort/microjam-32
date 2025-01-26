@@ -305,7 +305,7 @@ skeleton = NodePath("")
 [node name="Pyramid_Armature" type="Node3D" parent="."]
 
 [node name="Side_N_001" type="MeshInstance3D" parent="Pyramid_Armature"]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0.146176, 0.887396, -10.6001)
+transform = Transform3D(1, 0, 0, 0, 0.427216, -0.90415, 0, 0.90415, 0.427216, 0.146176, 0.586973, -11.2076)
 mesh = SubResource("ArrayMesh_k68hn")
 skeleton = NodePath("")
 
