@@ -22,12 +22,10 @@ func _physics_process(delta: float) -> void:
 			var drop_position = raycast.collider.get_drop_position(raycast.position)
 			global_position = drop_position
 			if check_placement_valid(drop_position):
-				print("valid")
 				$Indicators/Indicator_Valid.show()
 				$Indicators/Indicator_Invalid.hide()
 				input_place_tower()
 			else:
-				print("invalid")
 				$Indicators/Indicator_Invalid.show()
 				$Indicators/Indicator_Valid.hide()
 

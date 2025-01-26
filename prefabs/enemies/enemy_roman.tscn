@@ -13,7 +13,7 @@ Movement = NodePath("MovementNode")
 
 [node name="MovementNode" type="Node3D" parent="."]
 script = ExtResource("3_jkcse")
-speed = 1.0
+speed = 2.0
 
 [node name="Trackable" type="Node3D" parent="."]
 script = ExtResource("4_q8ak1")

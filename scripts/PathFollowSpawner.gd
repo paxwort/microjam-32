@@ -15,6 +15,10 @@ var RemainingWaitTime = 0.0
 
 var CurrentSpawnSet: SpawnCommand
 
+signal finished_spawning
+signal active_spawns_empty
+var active_spawns : Array[Node] = []
+
 @export var enemyTypes: Dictionary
 
 func _init() -> void:
@@ -53,11 +57,20 @@ func Spawn(spawn_id: String) -> void:
 		print("Enemy type %s not found" % spawn_id)
 		return
 	var enemy = toSpawn.instantiate()
-	
 	var pathFollow = PathFollower.instantiate().WithMovement(enemy.get_node("MovementNode"))
-	
 	pathFollow.add_child(enemy)
 	_path.add_child(pathFollow)
+	
+	active_spawns.push_back(pathFollow)
+	pathFollow.tree_exiting.connect(_on_spawned_object_exited_tree.bind(pathFollow))
+
+func _on_spawned_object_exited_tree(node : Node):
+	print("exit tree")
+	print(str(active_spawns.size()))
+	if active_spawns.has(node):
+		active_spawns.erase(node)
+	if(active_spawns.size() == 0):
+		active_spawns_empty.emit()
 
 func _load_file_as_string(file):
 	var f = FileAccess.open(file, FileAccess.READ)
