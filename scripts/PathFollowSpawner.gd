@@ -58,18 +58,22 @@ func Spawn(spawn_id: String) -> void:
 		return
 	var enemy = toSpawn.instantiate()
 	var pathFollow = PathFollower.instantiate().WithMovement(enemy.get_node("MovementNode"))
+	pathFollow.tree_entered.connect(_on_spawned_object_entered_tree.bind(pathFollow))
 	pathFollow.add_child(enemy)
 	_path.add_child(pathFollow)
 	
-	active_spawns.push_back(pathFollow)
 	pathFollow.tree_exiting.connect(_on_spawned_object_exited_tree.bind(pathFollow))
 
+
+func _on_spawned_object_entered_tree(node : Node):
+	active_spawns.push_back(node)
+
+
 func _on_spawned_object_exited_tree(node : Node):
-	print("exit tree")
-	print(str(active_spawns.size()))
 	if active_spawns.has(node):
 		active_spawns.erase(node)
 	if(active_spawns.size() == 0):
+		print("empty")
 		active_spawns_empty.emit()
 
 func _load_file_as_string(file):
