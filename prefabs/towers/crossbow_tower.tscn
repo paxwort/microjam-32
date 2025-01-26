@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://caue7rc1m70vr"]
+[gd_scene load_steps=7 format=3 uid="uid://caue7rc1m70vr"]
 
 [ext_resource type="PackedScene" uid="uid://5klxnakhgyxi" path="res://art_assets/towers/tower_crossbow.glb" id="1_fe5hx"]
 [ext_resource type="Script" path="res://scripts/tower/EnemyTracker.gd" id="1_voke0"]
 [ext_resource type="Script" path="res://scripts/tower/LookAtTarget.gd" id="3_21kcj"]
+[ext_resource type="Script" path="res://scripts/tower/WeaponFireComponent.gd" id="4_kuh3d"]
+[ext_resource type="PackedScene" uid="uid://cfbjgk7ylcrqq" path="res://prefabs/projectiles/crossbow_bolt.tscn" id="5_2cady"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ng7t3"]
 radius = 2.53939
@@ -26,5 +28,15 @@ bones/5/rotation = Quaternion(1.88894e-08, 0.608912, 0.793238, 3.36323e-07)
 bones/6/rotation = Quaternion(2.98023e-08, 1.23745e-08, -1.13266e-14, 1)
 script = ExtResource("3_21kcj")
 tracker = NodePath("../../../EnemyTracker")
+
+[node name="projectile_spawn_point" type="Node3D" parent="tower_crossbow/Crossbow_Armature/Skeleton3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366065, 0.0348253)
+
+[node name="WeaponFireComponent" type="Node3D" parent="." node_paths=PackedStringArray("projectile_spawn_point")]
+script = ExtResource("4_kuh3d")
+projectile = ExtResource("5_2cady")
+fire_rate = 1.0
+projectile_speed = 50.0
+projectile_spawn_point = NodePath("../tower_crossbow/Crossbow_Armature/Skeleton3D/projectile_spawn_point")
 
 [editable path="tower_crossbow"]

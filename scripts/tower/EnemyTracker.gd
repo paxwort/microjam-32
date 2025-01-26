@@ -8,6 +8,10 @@ signal targeted_changed
 func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
+
+func _process(delta: float) -> void:
+	if targeted:
+		$"../WeaponFireComponent".fire_weapon(targeted.global_transform)
 	
 func _on_body_entered(body : Node3D) -> void:
 	print("body entered")
