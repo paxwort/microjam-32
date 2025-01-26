@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://6838mpvlhuxx"]
+
+[ext_resource type="Script" path="res://scripts/enemy_components/EnemyController.gd" id="1_kl4ny"]
+[ext_resource type="Script" path="res://scripts/enemy_components/MovementComponent.gd" id="3_jkcse"]
+[ext_resource type="PackedScene" uid="uid://dr0utl4p040lq" path="res://art_assets/enemies/roman.glb" id="4_arg8y"]
+[ext_resource type="Script" path="res://scripts/enemy_components/TrackableComponent.gd" id="4_q8ak1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wupps"]
+
+[node name="Roman" type="CharacterBody3D" node_paths=PackedStringArray("Movement")]
+script = ExtResource("1_kl4ny")
+Movement = NodePath("MovementNode")
+
+[node name="MovementNode" type="Node3D" parent="."]
+script = ExtResource("3_jkcse")
+speed = 1.0
+
+[node name="Trackable" type="Node3D" parent="."]
+script = ExtResource("4_q8ak1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.404585, 0)
+shape = SubResource("SphereShape3D_wupps")
+
+[node name="roman" parent="." instance=ExtResource("4_arg8y")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="roman/Roman Armature" index="0"]
+bones/1/rotation = Quaternion(-0.049617, -6.66648e-09, -1.39985e-08, 0.998768)
+bones/3/rotation = Quaternion(0.57062, -0.0092633, 0.416887, 0.707469)
+bones/4/rotation = Quaternion(-0.273663, -0.168458, 0.246023, 0.914442)
+bones/5/rotation = Quaternion(-0.747006, 0.262075, 0.235718, 0.56368)
+bones/9/rotation = Quaternion(0.494557, -0.755561, -0.166587, 0.395968)
+bones/10/rotation = Quaternion(-0.552695, 0.0508291, -0.329059, 0.763979)
+bones/11/rotation = Quaternion(-0.480043, 0.365868, -0.253146, 0.756053)
+bones/13/rotation = Quaternion(0.591617, -0.31074, 0.346842, 0.658127)
+bones/14/rotation = Quaternion(-0.000837908, 1.64934e-07, -1.09156e-08, 1)
+bones/15/rotation = Quaternion(1.23322e-06, -0.667907, 0.744245, -1.32436e-06)
+bones/16/rotation = Quaternion(0.660348, -0.104078, 0.116168, 0.734583)
+bones/17/rotation = Quaternion(-0.000824805, 0.000144207, 0.172267, 0.98505)
+
+[node name="AnimationPlayer" parent="roman" index="1"]
+autoplay = "Roman Walk"
+
+[editable path="roman"]

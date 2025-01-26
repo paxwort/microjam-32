@@ -1,36 +1,36 @@
 {
 	"wave_1": [
 		{
-			"type": "enemy_1",
+			"type": "enemy_croc",
 			"count": 10,
-			"wait_time": 0.2
+			"wait_time": 1
 		},
 		{
-			"type": "enemy_2",
+			"type": "enemy_indy",
 			"count": 5,
 			"wait_time": 2
 		}
 	],
 	"wave_2": [
 		{
-			"type": "enemy_2",
+			"type": "enemy_roman",
 			"count": 3,
-			"wait_time": 0.5
+			"wait_time": 1
 		},
 		{
-			"type": "enemy_2",
+			"type": "enemy_indy",
 			"count": 5,
-			"wait_time": 1
+			"wait_time": 2
 		}
 	],
 	"wave_3": [
 		{
-			"type": "enemy_2",
+			"type": "enemy_croc",
 			"count": 2,
-			"wait_time": 0.6
+			"wait_time": 1
 		},
 		{
-			"type": "enemy_1",
+			"type": "enemy_roman",
 			"count": 3,
 			"wait_time": 2
 		}

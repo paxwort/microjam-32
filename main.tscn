@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=22 format=3 uid="uid://cjqln2kqwkwc4"]
 
 [ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
@@ -13,7 +13,10 @@
 [ext_resource type="PackedScene" uid="uid://c28v1lcjn3ks4" path="res://prefabs/spawner.tscn" id="8_ips6i"]
 [ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemies/enemy_1.tscn" id="9_jyc2j"]
 [ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemies/enemy_2.tscn" id="10_bt8ur"]
+[ext_resource type="PackedScene" uid="uid://bdcit6wslybiv" path="res://prefabs/enemies/enemy_indy.tscn" id="11_g30fw"]
+[ext_resource type="PackedScene" uid="uid://dbxn1et2iualn" path="res://prefabs/enemies/enemy_croc.tscn" id="11_o3g5j"]
 [ext_resource type="PackedScene" uid="uid://cht5gqlgvhwmc" path="res://scenes/pyramid.tscn" id="13_tao2x"]
+[ext_resource type="PackedScene" uid="uid://6838mpvlhuxx" path="res://prefabs/enemies/enemy_roman.tscn" id="13_yqiol"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6b1ja"]
 
@@ -114,7 +117,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 enemyTypes = {
 "enemy_1": ExtResource("9_jyc2j"),
-"enemy_2": ExtResource("10_bt8ur")
+"enemy_2": ExtResource("10_bt8ur"),
+"enemy_croc": ExtResource("11_o3g5j"),
+"enemy_indy": ExtResource("11_g30fw"),
+"enemy_roman": ExtResource("13_yqiol")
 }
 
 [node name="MazeMesher" parent="Map/Maze" index="1"]

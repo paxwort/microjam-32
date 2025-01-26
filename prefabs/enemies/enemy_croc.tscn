@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbxn1et2iualn"]
+
+[ext_resource type="Script" path="res://scripts/enemy_components/EnemyController.gd" id="1_7uu72"]
+[ext_resource type="PackedScene" uid="uid://b46l284jas2ld" path="res://art_assets/enemies/crocodile.glb" id="2_2ohyw"]
+[ext_resource type="Script" path="res://scripts/enemy_components/MovementComponent.gd" id="3_adta4"]
+[ext_resource type="Script" path="res://scripts/enemy_components/TrackableComponent.gd" id="4_cwif8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wupps"]
+
+[node name="Croc" type="CharacterBody3D" node_paths=PackedStringArray("Movement")]
+script = ExtResource("1_7uu72")
+Movement = NodePath("MovementNode")
+
+[node name="crocodile" parent="." instance=ExtResource("2_2ohyw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="crocodile/Croc Armature" index="0"]
+bones/1/rotation = Quaternion(0.134073, 0.00731503, 0.0539867, 0.989473)
+bones/1/scale = Vector3(1, 1, 1)
+bones/2/rotation = Quaternion(0.109117, -0.0290546, -0.0729481, 0.990923)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/rotation = Quaternion(0.425733, -0.0612275, -0.0594711, 0.900814)
+bones/4/rotation = Quaternion(0.246494, 0.016224, -0.0523516, 0.967593)
+bones/5/rotation = Quaternion(-0.801869, 0.0702062, 0.0640569, 0.589894)
+bones/6/rotation = Quaternion(0.0311806, -0.0121277, 0.164122, 0.985873)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(0.975719, -1.65359e-08, 7.36648e-08, -0.219025)
+bones/8/rotation = Quaternion(-0.654904, 2.13209e-07, -2.83656e-07, 0.755712)
+bones/9/rotation = Quaternion(0.961833, 6.19768e-08, -7.26164e-08, 0.273636)
+bones/10/rotation = Quaternion(-0.200218, -1.90461e-08, 5.04748e-07, 0.979751)
+
+[node name="AnimationPlayer" parent="crocodile" index="1"]
+autoplay = "Croc_Walk"
+
+[node name="MovementNode" type="Node3D" parent="."]
+script = ExtResource("3_adta4")
+speed = 1.0
+
+[node name="Trackable" type="Node3D" parent="."]
+script = ExtResource("4_cwif8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.404585, 0)
+shape = SubResource("SphereShape3D_wupps")
+
+[editable path="crocodile"]

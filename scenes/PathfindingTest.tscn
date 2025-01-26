@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://out2isyt6elw"]
+[gd_scene load_steps=10 format=3 uid="uid://out2isyt6elw"]
 
 [ext_resource type="MeshLibrary" uid="uid://c3d5okgea5o32" path="res://assets/KenneyNL_TowerDefence/tiles.tres" id="1_jjsu2"]
 [ext_resource type="PackedScene" uid="uid://c28v1lcjn3ks4" path="res://prefabs/spawner.tscn" id="2_5h3f7"]
 [ext_resource type="PackedScene" uid="uid://c6nunh56tvqt7" path="res://prefabs/enemies/enemy_1.tscn" id="3_7aebo"]
 [ext_resource type="PackedScene" uid="uid://ct1s71qnccv36" path="res://prefabs/enemies/enemy_2.tscn" id="4_a5sgv"]
+[ext_resource type="PackedScene" uid="uid://dbxn1et2iualn" path="res://prefabs/enemies/enemy_croc.tscn" id="5_8wm8r"]
 [ext_resource type="PackedScene" uid="uid://caue7rc1m70vr" path="res://prefabs/towers/crossbow_tower.tscn" id="5_e6c75"]
+[ext_resource type="PackedScene" uid="uid://bdcit6wslybiv" path="res://prefabs/enemies/enemy_indy.tscn" id="6_f5iqr"]
+[ext_resource type="PackedScene" uid="uid://6838mpvlhuxx" path="res://prefabs/enemies/enemy_roman.tscn" id="7_84hrt"]
 
 [sub_resource type="Curve3D" id="Curve3D_bd0po"]
 _data = {
@@ -30,7 +33,10 @@ curve = SubResource("Curve3D_bd0po")
 [node name="Spawner" parent="GridMap/Path3D" instance=ExtResource("2_5h3f7")]
 enemyTypes = {
 "enemy_1": ExtResource("3_7aebo"),
-"enemy_2": ExtResource("4_a5sgv")
+"enemy_2": ExtResource("4_a5sgv"),
+"enemy_croc": ExtResource("5_8wm8r"),
+"enemy_indy": ExtResource("6_f5iqr"),
+"enemy_roman": ExtResource("7_84hrt")
 }
 
 [node name="Camera3D" type="Camera3D" parent="."]

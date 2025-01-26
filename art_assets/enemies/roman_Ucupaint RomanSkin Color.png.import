@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dua48me8e8cai"
-path.s3tc="res://.godot/imported/roman_RomanSkin Layer 2.png-f1330354a5a2e7d323e42b6d91a06537.s3tc.ctex"
+uid="uid://3xd82sjkudqu"
+path.s3tc="res://.godot/imported/roman_Ucupaint RomanSkin Color.png-4caee5e181c566c88ab464b708de2172.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "7e94de7864851e32c93e9370d45cb1ed"
+"md5": "f14ef3013c501577d03b2f52379722fe"
 }
 
 [deps]
 
-source_file="res://art_assets/enemies/roman_RomanSkin Layer 2.png"
-dest_files=["res://.godot/imported/roman_RomanSkin Layer 2.png-f1330354a5a2e7d323e42b6d91a06537.s3tc.ctex"]
+source_file="res://art_assets/enemies/roman_Ucupaint RomanSkin Color.png"
+dest_files=["res://.godot/imported/roman_Ucupaint RomanSkin Color.png-4caee5e181c566c88ab464b708de2172.s3tc.ctex"]
 
 [params]
 
