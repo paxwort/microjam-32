@@ -1,8 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://cht5gqlgvhwmc"]
+[gd_scene load_steps=5 format=3 uid="uid://cht5gqlgvhwmc"]
 
 [ext_resource type="PackedScene" uid="uid://cfnw8s4hun357" path="res://art_assets/pyramid.glb" id="1_85ei2"]
+[ext_resource type="PackedScene" uid="uid://dywm5vlt2mg2k" path="res://art_assets/ui/button_small.glb" id="2_hmseq"]
+[ext_resource type="Script" path="res://scripts/ui/DiegeticButton.gd" id="2_vb8qv"]
+[ext_resource type="FontFile" uid="uid://kuabpcxa6ck4" path="res://assets/fonts/Zatanna Misdirection.otf" id="4_qnp5b"]
 
-[node name="pyramid" type="Node3D"]
+[node name="pyramid" instance=ExtResource("1_85ei2")]
 
-[node name="pyramid" parent="." instance=ExtResource("1_85ei2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.288237, 0, 0.68682)
+[node name="North_Anchor" parent="Pyramid_Armature/Skeleton3D" index="0"]
+transform = Transform3D(0.288751, 0, 0, 0, 0.288751, 0, 0, 0, 0.288751, 0, 0, -10.2578)
+
+[node name="button_start" parent="Pyramid_Armature/Skeleton3D/North_Anchor" index="1" instance=ExtResource("2_hmseq")]
+transform = Transform3D(3.46319, 0, 0, 0, 2.44885, 2.44885, 0, -2.44885, 2.44885, 3.59711, 14.5755, 11.6996)
+script = ExtResource("2_vb8qv")
+
+[node name="Label3D" type="Label3D" parent="Pyramid_Armature/Skeleton3D/North_Anchor/button_start/Button_Small" index="1"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0, 0.43225, -0.00335312)
+modulate = Color(0.835294, 0.478431, 0.372549, 1)
+outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
+text = "Start"
+font = ExtResource("4_qnp5b")
+font_size = 150
+outline_size = 24
+
+[node name="button_exit" parent="Pyramid_Armature/Skeleton3D/North_Anchor" index="2" instance=ExtResource("2_hmseq")]
+transform = Transform3D(3.46319, 0, 0, 0, 2.44885, 2.44885, 0, -2.44885, 2.44885, -1.37914, 10.1041, 7.11678)
+script = ExtResource("2_vb8qv")
+
+[node name="Label3D" type="Label3D" parent="Pyramid_Armature/Skeleton3D/North_Anchor/button_exit/Button_Small" index="1"]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -8.9407e-08, 1, 8.74228e-08, 1, 8.9407e-08, 0, 0.43225, -0.00335312)
+modulate = Color(0.835294, 0.478431, 0.372549, 1)
+outline_modulate = Color(0.686275, 0.368627, 0.290196, 1)
+text = "Exit"
+font = ExtResource("4_qnp5b")
+font_size = 150
+outline_size = 24
+
+[editable path="Pyramid_Armature/Skeleton3D/North_Anchor/button_start"]
+[editable path="Pyramid_Armature/Skeleton3D/North_Anchor/button_exit"]

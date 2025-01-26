@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdcit6wslybiv"]
+
+[ext_resource type="Script" path="res://scripts/enemy_components/EnemyController.gd" id="1_ixtn4"]
+[ext_resource type="PackedScene" uid="uid://c020c1aay72pp" path="res://art_assets/enemies/Indy.glb" id="2_qfik6"]
+[ext_resource type="Script" path="res://scripts/enemy_components/MovementComponent.gd" id="3_cauty"]
+[ext_resource type="Script" path="res://scripts/enemy_components/TrackableComponent.gd" id="4_k8yv2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wupps"]
+
+[node name="Indy" type="CharacterBody3D" node_paths=PackedStringArray("Movement")]
+script = ExtResource("1_ixtn4")
+Movement = NodePath("MovementNode")
+
+[node name="Indy" parent="." instance=ExtResource("2_qfik6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Indy/Indy Armature" index="0"]
+bones/0/rotation = Quaternion(0, 0.529494, 0, 0.848314)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(0, 0.168016, 0, 0.985784)
+bones/3/rotation = Quaternion(0.664158, 0.127336, -0.00811157, 0.736624)
+bones/4/rotation = Quaternion(-0.0954055, -0.0677571, 0.358914, 0.926006)
+bones/7/rotation = Quaternion(-1.36178e-07, 0.799064, -0.601246, 4.41351e-07)
+bones/8/rotation = Quaternion(0.583101, 0.0830907, -0.246627, 0.769587)
+bones/9/rotation = Quaternion(0.0613178, 0.00237231, -0.249326, 0.966474)
+bones/10/rotation = Quaternion(-0.255808, 0.174673, 0.0929189, 0.946265)
+bones/11/rotation = Quaternion(0.303152, 0.138395, 0.442377, 0.832615)
+bones/12/rotation = Quaternion(-0.114873, -0.186555, 0.272955, 0.936748)
+bones/13/rotation = Quaternion(-0.0613751, 0.127339, 0.133557, 0.980908)
+bones/14/rotation = Quaternion(0.119087, 0.0745171, 0.133885, 0.980989)
+bones/15/rotation = Quaternion(0.736698, 0.0948822, -0.105724, 0.661133)
+bones/16/rotation = Quaternion(0.535286, -0.233523, 0.186358, 0.790067)
+bones/17/rotation = Quaternion(0.139658, 0.0498628, -0.352227, 0.924092)
+bones/18/rotation = Quaternion(0.152432, -0.653748, 0.728468, 0.136794)
+bones/19/rotation = Quaternion(0.664358, -0.0386311, -0.0617867, 0.743853)
+bones/20/rotation = Quaternion(-0.200297, 0.0714964, 0.509845, 0.833563)
+
+[node name="AnimationPlayer" parent="Indy" index="1"]
+autoplay = "Indy_Walk"
+
+[node name="MovementNode" type="Node3D" parent="."]
+script = ExtResource("3_cauty")
+speed = 1.0
+
+[node name="Trackable" type="Node3D" parent="."]
+script = ExtResource("4_k8yv2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.404585, 0)
+shape = SubResource("SphereShape3D_wupps")
+
+[editable path="Indy"]
