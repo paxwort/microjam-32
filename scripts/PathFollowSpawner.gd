@@ -24,10 +24,14 @@ func _init() -> void:
 	PathFollower = preload("res://prefabs/enemies/enemy_path_follower.tscn")
 	GameManager.reset_game_state.connect(_reset_level)
 	GameManager.start_next_wave.connect(Start_round)
+	GameManager.game_over.connect(abort)
 
 func _ready() -> void:
 	_path = get_parent()
 	_reset_level()
+
+func abort() -> void:
+	SpawnQueue.clear()
 
 func _process(delta: float) -> void:
 	if CurrentSpawnSet == null || CurrentSpawnSet.count <= 0:

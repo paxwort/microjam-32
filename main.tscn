@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cjqln2kqwkwc4"]
+[gd_scene load_steps=40 format=3 uid="uid://cjqln2kqwkwc4"]
 
 [ext_resource type="Script" path="res://addons/pl-state-machine/classes/PLStateMachine.gd" id="1_c7j07"]
 [ext_resource type="PackedScene" uid="uid://srhpt5107l1u" path="res://scenes/Map.tscn" id="2_2bc4d"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://bmrysnx04toau" path="res://art_assets/ui/button_square.glb" id="19_iw33e"]
 [ext_resource type="Script" path="res://scripts/ui/MoneyDisplay.gd" id="20_f53f8"]
 [ext_resource type="Script" path="res://scripts/tower_placement/TowerPlacementSelect.gd" id="21_l56ot"]
+[ext_resource type="Script" path="res://scripts/trigger_gameover.gd" id="22_235l0"]
 [ext_resource type="Resource" uid="uid://cxuh6e33ntosr" path="res://prefabs/towers/spiketrap_tower_data.tres" id="23_a7ts0"]
 [ext_resource type="Resource" uid="uid://cfwf08lpd0xvp" path="res://prefabs/towers/crossbow_tower_data.tres" id="24_njx8m"]
 [ext_resource type="Script" path="res://scripts/audiovolume.gd" id="30_qxxui"]
@@ -341,10 +342,18 @@ script = ExtResource("7_m0nf8")
 resume = true
 target_state = "STATE_Resume"
 
+[node name="resumeToEnd" type="Node" parent="GameState/STATE_Paused"]
+script = ExtResource("7_m0nf8")
+resume = true
+target_state = "STATE_End"
+
 [node name="GoToExit" type="Node" parent="GameState/STATE_Paused"]
 script = ExtResource("3_cdlvk")
 target_state = "STATE_Exiting"
 wait_for_frame = true
+
+[node name="GameOver Trigger" type="Node" parent="GameState/STATE_Paused"]
+script = ExtResource("22_235l0")
 
 [node name="STATE_Reset" type="Node" parent="GameState"]
 process_mode = 4
@@ -421,9 +430,6 @@ text = "Volume"
 
 [node name="pyramid" parent="." instance=ExtResource("13_tao2x")]
 
-[node name="North_Anchor" parent="pyramid/Pyramid_Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.288751, 0, 0, 0, 0.288751, 0, 0, 0, 0.288751, 0, 0, -10.2578)
-
 [node name="AnimationPlayer" parent="pyramid" index="3"]
 process_mode = 3
 
@@ -474,6 +480,7 @@ bus = &"SFX"
 [connection signal="relay" from="GameState/STATE_Paused/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu" method="hide"]
 [connection signal="relay" from="GameState/STATE_Paused/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu" method="show"]
 [connection signal="relay" from="GameState/STATE_Paused/MenuVisibility" to="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu" method="hide"]
+[connection signal="transition" from="GameState/STATE_Paused/resumeToEnd" to="GameState/STATE_Paused/GameOver Trigger" method="trigger_gameover"]
 [connection signal="enabling" from="GameState/STATE_Reset" to="GameState/STATE_Reset/play_pyramid_close" method="play"]
 [connection signal="enabling" from="GameState/STATE_Exiting" to="GameState/STATE_Exiting/Exit" method="exit"]
 [connection signal="active_spawns_empty" from="Map/Maze/MazePath/Spawner" to="GameState/STATE_Game/RoundState/STATE_Play/GoToTowerSetup" method="go_to_state"]
@@ -481,6 +488,7 @@ bus = &"SFX"
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_start" to="GameState/STATE_Menu/GoToBegin" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_exit" to="GameState/STATE_Menu/GoToExit" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_resume" to="GameState/STATE_Paused/resume" method="pause_resume"]
+[connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_end" to="GameState/STATE_Paused/resumeToEnd" method="pause_resume"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_exit" to="GameState/STATE_Paused/GoToExit" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu/button_restart" to="GameState/STATE_End/GoToReset" method="go_to_state"]
 [connection signal="pressed" from="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu/button_exit" to="GameState/STATE_End/GoToExit2" method="go_to_state"]
@@ -496,6 +504,7 @@ bus = &"SFX"
 [editable path="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_start"]
 [editable path="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/startmenu/button_exit"]
 [editable path="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_resume"]
+[editable path="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_end"]
 [editable path="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/escmenu/button_exit"]
 [editable path="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu/button_restart"]
 [editable path="pyramid/Pyramid_Armature/Skeleton3D/North_Anchor/gameovermenu/button_exit"]
